@@ -93,13 +93,13 @@ const LoginPage = () => {
           <div className="w-full max-w-95 mx-auto flex flex-col justify-center min-h-full py-10">
             {/* */}
             <div className="space-y-4 mb-10 shrink-0">
-              <div className="inline-flex items-center gap-2 px-3 py-1 border border-cyan-500/30 rounded text-cyan-400 text-[10px] font-bold tracking-widest uppercase">
+              {/* <div className="inline-flex items-center gap-2 px-3 py-1 border border-cyan-500/30 rounded text-cyan-400 text-[10px] font-bold tracking-widest uppercase">
                 <span className="relative flex h-2 w-2 shrink-0">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
                 </span>
                 AUTHENTICATION_GATEWAY
-              </div>
+              </div> */}
               <h1 className="text-5xl font-extrabold text-white leading-tight tracking-tight">
                 Welcome back,
                 <br />
@@ -144,7 +144,7 @@ const LoginPage = () => {
               <form className="space-y-5 shrink-0 flex flex-col">
                 <div className="space-y-2 shrink-0 flex flex-col">
                   <label className="text-[11px] font-bold text-slate-400 tracking-widest uppercase px-1 shrink-0">
-                    IDENTIFIER
+                    Email Address
                   </label>
                   <input
                     className="w-full h-12 bg-[#1e293b]/50 border border-slate-700/50 rounded-lg px-4 text-slate-200 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/30 transition-all font-mono text-sm placeholder:text-slate-600 shrink-0"
@@ -155,14 +155,8 @@ const LoginPage = () => {
                 <div className="space-y-2 shrink-0 flex flex-col">
                   <div className="flex justify-between items-center px-1 shrink-0">
                     <label className="text-[11px] font-bold text-slate-400 tracking-widest uppercase">
-                      ACCESS_KEY
+                      Password
                     </label>
-                    <a
-                      className="text-[10px] font-bold text-cyan-600 hover:text-cyan-400 transition-colors uppercase tracking-widest shrink-0"
-                      href="#"
-                    >
-                      RECOVER_KEY
-                    </a>
                   </div>
                   <input
                     className="w-full h-12 bg-[#1e293b]/50 border border-slate-700/50 rounded-lg px-4 text-slate-200 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/30 transition-all font-mono text-sm placeholder:text-slate-600 shrink-0"
@@ -174,30 +168,30 @@ const LoginPage = () => {
                   className="w-full h-12 border border-cyan-500/20 bg-cyan-500/5 hover:bg-cyan-500/10 text-cyan-400 font-bold rounded-lg transition-all duration-300 uppercase tracking-widest text-xs mt-4 active:scale-[0.98] shrink-0"
                   type="button"
                 >
-                  Initialize Access
+                  Login
                 </button>
               </form>
             </div>
 
             {/* */}
-            <div className="pt-10 flex flex-col gap-4 mt-auto shrink-0">
+            <div className="pt-5 flex flex-col gap-4 mt-auto shrink-0">
               <p className="text-slate-400 text-sm">
                 New instance?
                 <a
                   className="text-cyan-400 hover:underline decoration-cyan-400/50 underline-offset-4 ml-2 font-semibold"
                   href="#"
                 >
-                  Register Identity
+                  Register
                 </a>
               </p>
-              <div className="flex items-center gap-2 opacity-60 hover:opacity-100 transition-opacity flex-wrap">
+              {/* <div className="flex items-center gap-2 opacity-60 hover:opacity-100 transition-opacity flex-wrap">
                 <span className="font-mono text-[10px] text-slate-500 bg-slate-800/80 px-2 py-1 rounded border border-slate-700/50 shrink-0">
                   0x8aebff_SECURED
                 </span>
                 <span className="font-mono text-[10px] text-slate-500 bg-slate-800/80 px-2 py-1 rounded border border-slate-700/50 shrink-0">
                   AES-256
                 </span>
-              </div>
+              </div> */}
             </div>
           </div>
         </section>

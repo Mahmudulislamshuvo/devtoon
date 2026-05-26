@@ -1,30 +1,39 @@
 const Navbar = () => {
   return (
-    <header className="fixed top-0 w-full z-50 bg-white/5 dark:bg-white/5 backdrop-blur-xl border-b border-white/10 shadow-[0_0_15px_rgba(47,217,244,0.1)]">
-      <nav className="flex justify-between items-center h-16 px-gutter max-w-7xl mx-auto">
-        <div className="flex items-center gap-base">
-          <span className="font-headline-lg text-headline-lg font-bold text-primary tracking-tighter">
-            DevToon
-          </span>
-        </div>
-        <div className="hidden md:flex gap-lg items-center">
+    <header className="bg-surface/30 backdrop-blur-xl border-b border-white/10 docked full-width fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop py-sm h-20">
+      <div className="flex items-center gap-md">
+        <span className="font-headline-lg text-headline-lg font-bold text-primary tracking-tighter">
+          DevToon
+        </span>
+        <nav className="hidden md:flex gap-md ml-lg">
           <a
-            className="font-body-md text-body-md text-primary border-b-2 border-primary pb-1"
+            className="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-200"
             href="#"
           >
-            Explore
+            Gallery
           </a>
           <a
-            className="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors"
+            className="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-200"
             href="#"
           >
-            Dashboard
+            Storyline
           </a>
-        </div>
-        <button className="bg-primary-container text-on-primary-container px-sm py-xs font-label-caps text-label-caps rounded-lg hover:bg-white/10 hover:shadow-[0_0_10px_#22d3ee] active:scale-95 duration-200 transition-all uppercase tracking-widest hover:text-primary cursor-pointer">
-          GitHub Login
+          <a
+            className="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-200"
+            href="#"
+          >
+            Roadmap
+          </a>
+        </nav>
+      </div>
+      <div className="flex items-center gap-sm">
+        <button className="hidden md:block font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all duration-300 hover:bg-primary/10 px-md py-xs rounded-lg active:scale-95">
+          Login
         </button>
-      </nav>
+        <button className="bg-primary-container text-on-primary-container font-label-caps text-label-caps px-lg py-xs rounded-lg font-bold hover:shadow-[0_0_15px_#22d3ee] transition-all duration-300 active:scale-95 text-[12px] tracking-[0.1em]">
+          Sign Up
+        </button>
+      </div>
     </header>
   );
 };
