@@ -1,0 +1,8 @@
+{
+  "chat.tools.terminal.autoApprove": {
+    "/^node -e \"\nconst glob = require\\('fs'\\);\nconsole\\.log\\(glob\\.readdirSync\\('c:/Users/Shuvo/Desktop/devton/\\.next/static/css'\\)\\);\n\"$/": {
+      "approve": true,
+      "matchCommandLine": true
+    }
+  }
+}
