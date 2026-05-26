@@ -3,15 +3,17 @@ const LoginPage = () => {
     <div className="bg-[#0b1121] text-slate-200 font-sans min-h-screen flex flex-col relative z-0 w-full overflow-hidden">
       {/* */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 right-0 w-[60%] h-full bg-cyan-500/5 rounded-full blur-[150px] opacity-30"></div>
+        <div className="absolute top-0 right-0 w-[50%] h-full bg-cyan-500/5 rounded-full blur-[150px] opacity-30"></div>
         <div className="absolute bottom-0 left-0 w-[40%] h-[40%] bg-blue-500/5 rounded-full blur-[120px] opacity-20"></div>
       </div>
 
       <main className="grow flex flex-col lg:flex-row w-full h-full relative z-10">
-        {/* */}
-        {/* min-w-0 যোগ করা হয়েছে যেন এটি তার নির্দিষ্ট জায়গার বাইরে না যায় */}
-        <section className="hidden lg:flex flex-1 flex-col justify-center items-center px-12 relative min-w-0">
-          <div className="rounded-xl overflow-hidden flex flex-col h-[600px] w-full max-w-2xl transform -rotate-1 shadow-2xl shadow-cyan-900/10 bg-[#111827] border border-slate-800 shrink-0">
+        {/* ==========================================
+            LEFT SIDE : TERMINAL SECTION
+        ========================================== */}
+        <section className="hidden lg:flex flex-1 flex-col justify-center p-8 lg:p-16 relative min-w-0">
+          {/* টার্মিনালের max-w-4xl দেওয়া হয়েছে যাতে এটি আপনার ছবির মতো চওড়া হয় এবং rotation সরিয়ে সোজা করা হয়েছে */}
+          <div className="mx-auto rounded-xl overflow-hidden flex flex-col h-137.5 xl:h-162.5 w-full max-w-4xl shadow-2xl shadow-cyan-900/20 bg-[#111827] border border-slate-800 shrink-0">
             {/* */}
             <div className="bg-slate-900/80 px-4 py-3 flex items-center justify-between border-b border-slate-800 shrink-0">
               <div className="flex gap-2">
@@ -25,7 +27,7 @@ const LoginPage = () => {
             </div>
 
             {/* */}
-            <div className="p-6 font-mono text-sm overflow-hidden flex-grow space-y-3 relative">
+            <div className="p-6 lg:p-10 font-mono text-sm overflow-hidden grow space-y-4 relative">
               <p className="text-slate-500">
                 [08:42:11] Initializing neural bridge protocol...
               </p>
@@ -33,7 +35,8 @@ const LoginPage = () => {
                 [08:42:12] AUTH_REQ: Architect validation required.
               </p>
               <p className="text-slate-500">
-                [08:42:13] Loading workspace state: "Cyber-Voxel-Project"
+                [08:42:13] Loading workspace state:
+                &ldquo;Cyber-Voxel-Project&rdquo;
               </p>
               <p className="text-slate-500">
                 [08:42:14] 3,412 files analyzed. Code quality index: 0.98
@@ -45,7 +48,7 @@ const LoginPage = () => {
                 [08:42:16] Awaiting input link...
               </p>
 
-              <div className="pt-4 space-y-2">
+              <div className="pt-6 space-y-3">
                 <p className="text-slate-300">
                   <span className="text-cyan-400 mr-2">&gt;</span>fetch --origin
                   git@github.com:devtoon/narrative-engine.git
@@ -63,27 +66,31 @@ const LoginPage = () => {
                 </p>
               </div>
 
-              <div className="pt-10">
-                <p className="text-cyan-600/70 italic text-xs">
-                  "The code is but the skeleton; Narrative is the soul."
+              <div className="pt-12">
+                <p className="text-cyan-600/70 italic text-sm">
+                  &ldquo;The code is but the skeleton; Narrative is the
+                  soul.&ldquo;
                 </p>
               </div>
-              <p className="pt-4 text-slate-400 animate-pulse">_</p>
+              <p className="pt-4 text-slate-400 animate-pulse font-bold text-lg">
+                _
+              </p>
 
               {/* */}
-              <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#111827] to-transparent pointer-events-none"></div>
+              <div className="absolute bottom-0 left-0 right-0 h-32 bg-linear-to-t from-[#111827] to-transparent pointer-events-none"></div>
             </div>
           </div>
 
           {/* */}
-          <div className="absolute -z-10 top-1/2 left-0 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-600/5 rounded-full blur-[100px]"></div>
+          <div className="absolute -z-10 top-1/2 left-1/4 -translate-y-1/2 w-125 h-125 bg-cyan-600/5 rounded-full blur-[100px]"></div>
         </section>
 
-        {/* */}
-        {/* shrink-0 যোগ করা হয়েছে যেন এই সেকশনটি কোনোভাবেই ৪৮০ পিক্সেলের চেয়ে ছোট না হয় */}
-        <section className="w-full lg:w-[480px] shrink-0 flex flex-col justify-center p-8 md:p-12 bg-[#0b1121]/80 backdrop-blur-md lg:border-l border-slate-800/50 relative z-10 overflow-y-auto">
-          {/* max-w-[360px] এবং mx-auto দিয়ে ফর্মটিকে মাঝখানে সুন্দরভাবে রাখা হয়েছে */}
-          <div className="w-full max-w-[360px] mx-auto flex flex-col justify-center min-h-full py-10">
+        {/* ==========================================
+            RIGHT SIDE : LOGIN FORM SECTION
+        ========================================== */}
+        {/* নির্দিষ্ট w-[480px] দেওয়া হয়েছে যাতে এটি ডানদিকে পারফেক্টভাবে বসে থাকে */}
+        <section className="w-full lg:w-120 xl:w-125 shrink-0 flex flex-col justify-center p-8 md:p-12 bg-[#0b1121]/90 backdrop-blur-xl lg:border-l border-slate-800/50 relative z-10 overflow-y-auto">
+          <div className="w-full max-w-95 mx-auto flex flex-col justify-center min-h-full py-10">
             {/* */}
             <div className="space-y-4 mb-10 shrink-0">
               <div className="inline-flex items-center gap-2 px-3 py-1 border border-cyan-500/30 rounded text-cyan-400 text-[10px] font-bold tracking-widest uppercase">
@@ -91,7 +98,7 @@ const LoginPage = () => {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
                 </span>
-                AUTHENTICATION_GATEWAY_V2
+                AUTHENTICATION_GATEWAY
               </div>
               <h1 className="text-5xl font-extrabold text-white leading-tight tracking-tight">
                 Welcome back,
@@ -126,11 +133,11 @@ const LoginPage = () => {
 
               {/* */}
               <div className="relative flex items-center py-2 shrink-0">
-                <div className="flex-grow border-t border-slate-800"></div>
-                <span className="flex-shrink-0 mx-4 text-[10px] font-bold text-slate-500 tracking-widest uppercase">
+                <div className="grow border-t border-slate-800"></div>
+                <span className="shrink-0 mx-4 text-[10px] font-bold text-slate-500 tracking-widest uppercase">
                   LEGACY PROTOCOL
                 </span>
-                <div className="flex-grow border-t border-slate-800"></div>
+                <div className="grow border-t border-slate-800"></div>
               </div>
 
               {/* */}
@@ -173,7 +180,7 @@ const LoginPage = () => {
             </div>
 
             {/* */}
-            <div className="pt-8 flex flex-col gap-4 mt-auto shrink-0">
+            <div className="pt-10 flex flex-col gap-4 mt-auto shrink-0">
               <p className="text-slate-400 text-sm">
                 New instance?
                 <a
