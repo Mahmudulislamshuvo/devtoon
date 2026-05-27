@@ -1,5 +1,13 @@
 "use client";
 
+import Link from "next/link";
+import {
+  MdAlternateEmail,
+  MdBolt,
+  MdDataExploration,
+  MdVisibility,
+} from "react-icons/md";
+
 const RegRightSide = () => {
   return (
     <div className="lg:col-span-8">
@@ -23,12 +31,12 @@ const RegRightSide = () => {
           {/* <!-- Header Section --> */}
           <div className="text-center md:text-left mb-10">
             <h1 className="font-headline-xl text-headline-xl leading-tight tracking-tighter">
-              <span className="font-extrabold text-on-background">FORGE</span>
+              <span className="font-extrabold text-on-background">CREATE</span>
               <span className="font-thin italic text-primary text-glow mx-2">
                 YOUR
               </span>
               <span className="font-extrabold text-on-background relative">
-                IDENTITY
+                ACCOUNT
                 <span className="absolute -bottom-2 left-0 w-1/2 h-1 bg-primary/30"></span>
               </span>
             </h1>
@@ -51,9 +59,7 @@ const RegRightSide = () => {
                     e.target.parentElement.classList.remove("neon-glow-active")
                   }
                 />
-                <span className="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 text-primary/30 text-[18px] group-focus-within:text-primary">
-                  alternate_email
-                </span>
+                <MdAlternateEmail className="absolute right-md top-1/2 -translate-y-1/2 text-primary/30 text-[18px] group-focus-within:text-primary" />
                 <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-focus-within:w-full transition-all duration-500"></div>
               </div>
             </div>
@@ -81,9 +87,7 @@ const RegRightSide = () => {
                       )
                     }
                   />
-                  <span className="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 text-primary/30 text-[18px] group-focus-within:text-primary animate-pulse">
-                    data_exploration
-                  </span>
+                  <MdDataExploration className="absolute right-md top-1/2 -translate-y-1/2 text-primary/30 text-[18px] group-focus-within:text-primary animate-pulse" />
                   <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-focus-within:w-full transition-all duration-500"></div>
                 </div>
               </div>
@@ -110,9 +114,7 @@ const RegRightSide = () => {
                     className="absolute right-md top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-secondary transition-colors"
                     type="button"
                   >
-                    <span className="material-symbols-outlined text-[18px]">
-                      visibility
-                    </span>
+                    <MdVisibility className="text-[18px]" />
                   </button>
                   <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary group-focus-within:w-full transition-all duration-500"></div>
                 </div>
@@ -150,9 +152,7 @@ const RegRightSide = () => {
                   SUBMIT
                 </span>
                 <div className="flex items-center gap-xs">
-                  <span className="material-symbols-outlined text-primary text-[24px] group-hover:rotate-12 transition-transform">
-                    bolt
-                  </span>
+                  <MdBolt className="text-primary text-[24px] group-hover:rotate-12 transition-transform" />
                   <div className="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_#22d3ee]"></div>
                 </div>
               </div>

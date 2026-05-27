@@ -1,4 +1,37 @@
+"use client";
+
+import { useState } from "react";
+import {
+  MdArrowForward,
+  MdAutoAwesome,
+  MdCheck,
+  MdGroup,
+  MdHistory,
+  MdHub,
+  MdLink,
+  MdPersonAdd,
+  MdRocketLaunch,
+  MdShare,
+  MdStorage,
+  MdTerminal,
+  MdVerified,
+} from "react-icons/md";
+
 const DevUsernamePage = () => {
+  const [copyFeedback, setCopyFeedback] = useState(false);
+
+  const copyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      setCopyFeedback(true);
+      setTimeout(() => {
+        setCopyFeedback(false);
+      }, 2000);
+    } catch (error) {
+      console.error("Failed to copy: ", error);
+    }
+  };
+
   return (
     <main className="pt-xl pb-xl px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto space-y-xl">
       {/* <!-- Profile Header Section --> */}
@@ -17,13 +50,7 @@ const DevUsernamePage = () => {
                 />
               </div>
               <div className="absolute bottom-2 right-2 bg-primary w-8 h-8 rounded-full flex items-center justify-center text-on-primary glow-cyan">
-                <span
-                  className="material-symbols-outlined text-sm"
-                  data-icon="verified"
-                  data-weight="fill"
-                >
-                  verified
-                </span>
+                <MdVerified className="text-sm" />
               </div>
             </div>
           </div>
@@ -37,61 +64,38 @@ const DevUsernamePage = () => {
             </p>
             <div className="flex flex-wrap justify-center md:justify-start gap-sm pt-base">
               <div className="flex items-center gap-xs px-sm py-xs bg-white/5 border border-white/10 rounded-full font-label-caps text-label-caps">
-                <span
-                  className="material-symbols-outlined text-primary text-lg"
-                  data-icon="hub"
-                >
-                  hub
-                </span>
+                <MdHub className="text-primary text-lg" />
                 1.2k Stars
               </div>
               <div className="flex items-center gap-xs px-sm py-xs bg-white/5 border border-white/10 rounded-full font-label-caps text-label-caps">
-                <span
-                  className="material-symbols-outlined text-secondary text-lg"
-                  data-icon="terminal"
-                >
-                  terminal
-                </span>
+                <MdTerminal className="text-secondary text-lg" />
                 450 Commits
               </div>
               <div className="flex items-center gap-xs px-sm py-xs bg-white/5 border border-white/10 rounded-full font-label-caps text-label-caps">
-                <span
-                  className="material-symbols-outlined text-tertiary text-lg"
-                  data-icon="group"
-                >
-                  group
-                </span>
+                <MdGroup className="text-tertiary text-lg" />
                 28 Repos
               </div>
             </div>
           </div>
           <div className="md:col-span-3 flex flex-col gap-sm">
             <button className="w-full py-sm bg-primary-container text-on-primary-container rounded-lg font-label-caps text-label-caps flex items-center justify-center gap-sm glow-cyan hover:scale-[1.02] transition-transform">
-              <span
-                className="material-symbols-outlined"
-                data-icon="person_add"
-              >
-                person_add
-              </span>
+              <MdPersonAdd />
               Follow
             </button>
             <div className="flex gap-sm">
-              <button className="flex-1 py-sm glass-pane rounded-lg font-label-caps text-label-caps flex items-center justify-center gap-xs hover:bg-white/10 transition-colors">
-                <span
-                  className="material-symbols-outlined text-sm"
-                  data-icon="link"
-                >
-                  link
-                </span>
-                Copy
+              <button
+                className="flex-1 py-sm glass-pane rounded-lg font-label-caps text-label-caps flex items-center justify-center gap-xs hover:bg-white/10 transition-colors"
+                onClick={copyLink}
+              >
+                {copyFeedback ? (
+                  <MdCheck className="text-sm" />
+                ) : (
+                  <MdLink className="text-sm" />
+                )}
+                {copyFeedback ? "Copied!" : "Copy"}
               </button>
               <button className="flex-1 py-sm glass-pane rounded-lg font-label-caps text-label-caps flex items-center justify-center gap-xs hover:bg-white/10 transition-colors">
-                <span
-                  className="material-symbols-outlined text-sm"
-                  data-icon="share"
-                >
-                  share
-                </span>
+                <MdShare className="text-sm" />
                 Tweet
               </button>
             </div>
@@ -103,12 +107,7 @@ const DevUsernamePage = () => {
         <div className="flex items-center justify-between">
           <div className="space-y-base">
             <h2 className="font-headline-lg text-headline-lg text-primary flex items-center gap-sm">
-              <span
-                className="material-symbols-outlined text-3xl"
-                data-icon="auto_awesome"
-              >
-                auto_awesome
-              </span>
+              <MdAutoAwesome className="text-3xl" />
               Dev Storyboard
             </h2>
             <p className="font-code-sm text-code-sm text-on-surface-variant">
@@ -151,12 +150,7 @@ const DevUsernamePage = () => {
                     <span className="font-code-sm text-code-sm text-on-surface-variant">
                       View Commit
                     </span>
-                    <span
-                      className="material-symbols-outlined text-primary"
-                      data-icon="arrow_forward"
-                    >
-                      arrow_forward
-                    </span>
+                    <MdArrowForward className="text-primary" />
                   </div>
                 </div>
               </div>
@@ -165,12 +159,7 @@ const DevUsernamePage = () => {
                 <div className="p-lg h-full flex flex-col justify-between scanline">
                   <div className="space-y-md">
                     <div className="flex items-center gap-sm border-b border-primary/20 pb-sm">
-                      <span
-                        className="material-symbols-outlined text-primary"
-                        data-icon="history"
-                      >
-                        history
-                      </span>
+                      <MdHistory className="text-primary" />
                       <h3 className="font-label-caps text-label-caps text-primary">
                         COMMIT METADATA
                       </h3>
@@ -237,12 +226,7 @@ const DevUsernamePage = () => {
                     <span className="font-code-sm text-code-sm text-on-surface-variant">
                       View Commit
                     </span>
-                    <span
-                      className="material-symbols-outlined text-secondary"
-                      data-icon="arrow_forward"
-                    >
-                      arrow_forward
-                    </span>
+                    <MdArrowForward className="text-secondary" />
                   </div>
                 </div>
               </div>
@@ -251,12 +235,7 @@ const DevUsernamePage = () => {
                 <div className="p-lg h-full flex flex-col justify-between scanline">
                   <div className="space-y-md">
                     <div className="flex items-center gap-sm border-b border-secondary/20 pb-sm">
-                      <span
-                        className="material-symbols-outlined text-secondary"
-                        data-icon="database"
-                      >
-                        database
-                      </span>
+                      <MdStorage className="text-secondary" />
                       <h3 className="font-label-caps text-label-caps text-secondary">
                         COMMIT METADATA
                       </h3>
@@ -323,12 +302,7 @@ const DevUsernamePage = () => {
                     <span className="font-code-sm text-code-sm text-on-surface-variant">
                       View Commit
                     </span>
-                    <span
-                      className="material-symbols-outlined text-tertiary"
-                      data-icon="arrow_forward"
-                    >
-                      arrow_forward
-                    </span>
+                    <MdArrowForward className="text-tertiary" />
                   </div>
                 </div>
               </div>
@@ -337,12 +311,7 @@ const DevUsernamePage = () => {
                 <div className="p-lg h-full flex flex-col justify-between scanline">
                   <div className="space-y-md">
                     <div className="flex items-center gap-sm border-b border-tertiary/20 pb-sm">
-                      <span
-                        className="material-symbols-outlined text-tertiary"
-                        data-icon="rocket_launch"
-                      >
-                        rocket_launch
-                      </span>
+                      <MdRocketLaunch className="text-tertiary" />
                       <h3 className="font-label-caps text-label-caps text-tertiary">
                         COMMIT METADATA
                       </h3>

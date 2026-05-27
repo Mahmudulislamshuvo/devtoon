@@ -1,13 +1,18 @@
 import Image from "next/image";
+import {
+  MdAutoAwesome,
+  MdPlayCircle,
+  MdRocketLaunch,
+  MdTerminal,
+  MdTouchApp,
+} from "react-icons/md";
 
 const HeroSection = () => {
   return (
     <div className="max-w-7xl mx-auto px-margin-desktop py-xl grid grid-cols-1 lg:grid-cols-12 gap-xl items-center min-h-230.25">
       <div className="lg:col-span-6 space-y-md">
         <div className="inline-flex items-center gap-xs px-sm py-base rounded-full border border-primary/20 text-primary">
-          <span className="material-symbols-outlined text-[18px]">
-            auto_awesome
-          </span>
+          <MdAutoAwesome className="text-[18px]" />
           <span className="font-label-caps text-label-caps">
             AI-Powered Version Control Storytelling
           </span>
@@ -25,18 +30,11 @@ const HeroSection = () => {
         </p>
         <div className="flex flex-wrap gap-md pt-md">
           <button className="bg-primary-container text-on-primary-container px-lg py-sm font-label-caps text-label-caps rounded-xl hover:shadow-[0_0_20px_#22d3ee] active:scale-95 duration-200 transition-all flex items-center gap-sm">
-            <span
-              className="material-symbols-outlined"
-              data-icon="rocket_launch"
-            >
-              rocket_launch
-            </span>
+            <MdRocketLaunch />
             Get Started with GitHub
           </button>
           <button className="glass-surface px-lg py-sm font-label-caps text-label-caps text-on-surface rounded-xl hover:bg-white/10 active:scale-95 duration-200 transition-all flex items-center gap-sm">
-            <span className="material-symbols-outlined" data-icon="play_circle">
-              play_circle
-            </span>
+            <MdPlayCircle />
             Watch Demo
           </button>
         </div>
@@ -57,12 +55,7 @@ const HeroSection = () => {
                     branch: main
                   </span>
                 </div>
-                <span
-                  className="material-symbols-outlined text-primary/50"
-                  data-icon="terminal"
-                >
-                  terminal
-                </span>
+                <MdTerminal className="text-primary/50" />
               </div>
               <div className="bg-surface-container-lowest p-md rounded-lg border-l-2 border-primary">
                 <p className="font-code-sm text-code-sm text-on-surface-variant">
@@ -141,10 +134,7 @@ const HeroSection = () => {
         {/* <!-- Interactive Tip --> */}
         <div className="absolute -bottom-xl left-1/2 -translate-x-1/2 text-center">
           <p className="font-label-caps text-label-caps text-on-surface-variant animate-pulse flex items-center gap-xs">
-            <span className="material-symbols-outlined text-[16px]">
-              touch_app
-            </span>{" "}
-            Hover or click to transform
+            <MdTouchApp className="text-[16px]" /> Hover or click to transform
           </p>
         </div>
       </div>

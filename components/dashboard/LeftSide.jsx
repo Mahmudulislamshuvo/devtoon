@@ -1,3 +1,5 @@
+import { MdAutoAwesome, MdStar, MdSync } from "react-icons/md";
+
 const LeftSide = () => {
   return (
     <div className="lg:col-span-8 space-y-md">
@@ -6,7 +8,7 @@ const LeftSide = () => {
           Your Repositories
         </h2>
         <div className="flex items-center gap-xs text-primary font-code-sm">
-          <span className="material-symbols-outlined text-[18px]">sync</span>
+          <MdSync className="text-[18px]" />
           <span className="font-label-caps text-label-caps">Refresh Index</span>
         </div>
       </div>
@@ -23,12 +25,7 @@ const LeftSide = () => {
               </p>
             </div>
             <div className="flex items-center gap-xs px-2 py-1 bg-white/5 rounded">
-              <span
-                className="material-symbols-outlined text-tertiary"
-                style={{ fontVariationSettings: '"FILL" 1' }}
-              >
-                star
-              </span>
+              <MdStar className="text-tertiary" />
               <span className="font-label-caps text-label-caps text-tertiary">
                 1.2k
               </span>
@@ -38,7 +35,7 @@ const LeftSide = () => {
             <div className="h-full bg-primary-container w-3/4 shadow-[0_0_10px_#22d3ee]"></div>
           </div>
           <button className="w-full py-sm bg-white/5 border border-primary/20 hover:border-primary/60 hover:bg-primary/10 text-primary font-label-caps text-label-caps rounded flex items-center justify-center gap-xs transition-all active:scale-95">
-            <span className="material-symbols-outlined">auto_awesome</span>
+            <MdAutoAwesome />
             Generate Story
           </button>
         </div>
@@ -54,12 +51,7 @@ const LeftSide = () => {
               </p>
             </div>
             <div className="flex items-center gap-xs px-2 py-1 bg-white/5 rounded">
-              <span
-                className="material-symbols-outlined text-tertiary"
-                style={{ fontVariationSettings: '"FILL" 1' }}
-              >
-                star
-              </span>
+              <MdStar className="text-tertiary" />
               <span className="font-label-caps text-label-caps text-tertiary">
                 842
               </span>
@@ -69,7 +61,7 @@ const LeftSide = () => {
             <div className="h-full bg-primary-container w-1/2 shadow-[0_0_10px_#22d3ee]"></div>
           </div>
           <button className="w-full py-sm bg-white/5 border border-primary/20 hover:border-primary/60 hover:bg-primary/10 text-primary font-label-caps text-label-caps rounded flex items-center justify-center gap-xs transition-all active:scale-95">
-            <span className="material-symbols-outlined">auto_awesome</span>
+            <MdAutoAwesome />
             Generate Story
           </button>
         </div>
@@ -85,12 +77,7 @@ const LeftSide = () => {
               </p>
             </div>
             <div className="flex items-center gap-xs px-2 py-1 bg-white/5 rounded">
-              <span
-                className="material-symbols-outlined text-tertiary"
-                style={{ fontVariationSettings: '"FILL" 1' }}
-              >
-                star
-              </span>
+              <MdStar className="text-tertiary" />
               <span className="font-label-caps text-label-caps text-tertiary">
                 2.4k
               </span>
@@ -100,7 +87,7 @@ const LeftSide = () => {
             <div className="h-full bg-primary-container w-5/6 shadow-[0_0_10px_#22d3ee]"></div>
           </div>
           <button className="w-full py-sm bg-white/5 border border-primary/20 hover:border-primary/60 hover:bg-primary/10 text-primary font-label-caps text-label-caps rounded flex items-center justify-center gap-xs transition-all active:scale-95">
-            <span className="material-symbols-outlined">auto_awesome</span>
+            <MdAutoAwesome />
             Generate Story
           </button>
         </div>
@@ -116,12 +103,7 @@ const LeftSide = () => {
               </p>
             </div>
             <div className="flex items-center gap-xs px-2 py-1 bg-white/5 rounded">
-              <span
-                className="material-symbols-outlined text-tertiary"
-                style={{ fontVariationSettings: '"FILL" 1' }}
-              >
-                star
-              </span>
+              <MdStar className="text-tertiary" />
               <span className="font-label-caps text-label-caps text-tertiary">
                 315
               </span>
@@ -131,7 +113,7 @@ const LeftSide = () => {
             <div className="h-full bg-primary-container w-1/4 shadow-[0_0_10px_#22d3ee]"></div>
           </div>
           <button className="w-full py-sm bg-white/5 border border-primary/20 hover:border-primary/60 hover:bg-primary/10 text-primary font-label-caps text-label-caps rounded flex items-center justify-center gap-xs transition-all active:scale-95">
-            <span className="material-symbols-outlined">auto_awesome</span>
+            <MdAutoAwesome />
             Generate Story
           </button>
         </div>

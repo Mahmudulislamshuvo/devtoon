@@ -1,3 +1,5 @@
+import { MdLogin } from "react-icons/md";
+
 const CTASection = () => {
   return (
     <div className="max-w-7xl mx-auto px-margin-desktop py-xl">
@@ -13,9 +15,7 @@ const CTASection = () => {
           </p>
           <div className="pt-sm">
             <button className="bg-primary-container text-on-primary-container px-xl py-md font-label-caps text-label-caps rounded-xl hover:shadow-[0_0_30px_#22d3ee] active:scale-95 duration-200 transition-all inline-flex items-center gap-sm">
-              <span className="material-symbols-outlined" data-icon="login">
-                login
-              </span>
+              <MdLogin />
               Connect GitHub Account
             </button>
           </div>

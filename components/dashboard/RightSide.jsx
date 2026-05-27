@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect } from "react";
+import { MdHistory } from "react-icons/md";
 
 const RightSide = () => {
   useEffect(() => {
@@ -43,9 +44,7 @@ const RightSide = () => {
         <h2 className="font-headline-lg text-headline-lg text-on-surface">
           Recent Stories
         </h2>
-        <span className="material-symbols-outlined text-on-surface-variant">
-          history
-        </span>
+        <MdHistory className="text-on-surface-variant" />
       </div>
       <div className="glass-card rounded-xl overflow-hidden">
         <div className="p-md space-y-md">

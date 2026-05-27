@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { FaRegUserCircle } from "react-icons/fa";
+import { MdOutlinePsychology, MdTerminal } from "react-icons/md";
 
 const RegLeftside = () => {
   const [logs, setLogs] = useState([
@@ -44,9 +46,7 @@ const RegLeftside = () => {
         <div className="scan-line"></div>
         <div className="flex justify-between items-center mb-md">
           <h2 className="font-label-caps text-label-caps text-primary tracking-widest flex items-center gap-xs">
-            <span className="material-symbols-outlined text-[16px] animate-pulse">
-              psychology
-            </span>
+            <MdOutlinePsychology className="text-[16px] animate-pulse" />
             NEURAL_PROFILE_V2
           </h2>
           <span className="font-code-sm text-[10px] text-secondary">
@@ -59,9 +59,7 @@ const RegLeftside = () => {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 border border-secondary/40 rounded-full animate-reverse-spin"></div>
           </div>
           <div className="relative z-10 flex flex-col items-center">
-            <span className="material-symbols-outlined text-[100px] text-primary/60 drop-shadow-[0_0_15px_rgba(138,235,255,0.4)]">
-              account_circle
-            </span>
+            <FaRegUserCircle className="text-[100px] text-primary/60 drop-shadow-[0_0_15px_rgba(138,235,255,0.4)]" />
             <div className="mt-md px-md py-xs bg-surface-container-highest/80 backdrop-blur border border-primary/30 rounded font-label-caps text-[10px] text-primary tracking-[0.2em] animate-blink">
               SCANNING_FACIAL_METADATA...
             </div>
@@ -104,9 +102,7 @@ const RegLeftside = () => {
       <div className="glass-surface p-md rounded-xl border border-outline-variant/20 neon-border bg-surface-container-lowest/30 transition-transform duration-200 ease-out">
         <div className="flex items-center justify-between mb-sm">
           <div className="flex items-center gap-sm">
-            <span className="material-symbols-outlined text-secondary animate-pulse text-[18px]">
-              terminal
-            </span>
+            <MdTerminal className="text-secondary animate-pulse text-[18px]" />
             <span className="font-label-caps text-label-caps text-on-surface">
               SYSTEM_LOGS
             </span>

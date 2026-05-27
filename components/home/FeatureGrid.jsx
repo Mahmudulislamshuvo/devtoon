@@ -1,3 +1,10 @@
+import {
+  MdAutoStories,
+  MdIntegrationInstructions,
+  MdPersonSearch,
+  MdQueryStats,
+} from "react-icons/md";
+
 const FeatureGrid = () => {
   return (
     <div className="max-w-7xl mx-auto px-margin-desktop py-xl">
@@ -13,15 +20,7 @@ const FeatureGrid = () => {
         {/* <!-- AI Storyboard Card --> */}
         <div className="md:col-span-8 glass-surface rounded-xl p-lg flex flex-col justify-end group overflow-hidden relative">
           <div className="absolute top-0 right-0 p-lg opacity-20 group-hover:opacity-100 transition-opacity">
-            <span
-              className="material-symbols-outlined text-primary text-[120px]! leading-none"
-              style={{
-                fontVariationSettings:
-                  '"FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48',
-              }}
-            >
-              auto_stories
-            </span>
+            <MdAutoStories className="text-primary text-[120px]! leading-none" />
           </div>
           <div className="relative z-10">
             <span className="font-label-caps text-label-caps text-primary block mb-xs uppercase">
@@ -40,12 +39,7 @@ const FeatureGrid = () => {
         {/* <!-- Recruiter Mode --> */}
         <div className="md:col-span-4 glass-surface rounded-xl p-lg flex flex-col justify-between border-secondary/20">
           <div className="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary border border-secondary/30">
-            <span
-              className="material-symbols-outlined"
-              data-icon="person_search"
-            >
-              person_search
-            </span>
+            <MdPersonSearch />
           </div>
           <div>
             <h3 className="font-headline-lg text-[24px] text-on-surface mb-xs">
@@ -60,9 +54,7 @@ const FeatureGrid = () => {
         {/* <!-- Code Insights --> */}
         <div className="md:col-span-4 glass-surface rounded-xl p-lg flex flex-col justify-between border-tertiary/20">
           <div className="w-12 h-12 rounded-lg bg-tertiary/10 flex items-center justify-center text-tertiary border border-tertiary/30">
-            <span className="material-symbols-outlined" data-icon="query_stats">
-              query_stats
-            </span>
+            <MdQueryStats />
           </div>
           <div>
             <h3 className="font-headline-lg text-[24px] text-on-surface mb-xs">
@@ -95,15 +87,7 @@ const FeatureGrid = () => {
             </p>
           </div>
           <div className="absolute bottom-0 right-0 translate-y-1/4 translate-x-1/4 group-hover:translate-y-0 group-hover:translate-x-0 duration-500 transition-all">
-            <span
-              className="material-symbols-outlined text-[200px]! leading-none text-white/5"
-              style={{
-                fontVariationSettings:
-                  '"FILL" 1, "wght" 200, "GRAD" 0, "opsz" 200',
-              }}
-            >
-              integration_instructions
-            </span>
+            <MdIntegrationInstructions className="text-[200px]! leading-none text-white/5" />
           </div>
         </div>
       </div>
