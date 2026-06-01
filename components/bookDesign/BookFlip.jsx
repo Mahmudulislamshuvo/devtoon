@@ -56,7 +56,6 @@ const BookFlip = () => {
           </span>
         </PageCover>
 
-        {/* ভেতরের পাতাগুলো (এখন <Pages> ট্যাগ ব্যবহার করা হয়েছে) */}
         <Pages number={1}>
           "The mainframe gates were breached! Our hero quickly patched the
           firewall, locking the intruders out."

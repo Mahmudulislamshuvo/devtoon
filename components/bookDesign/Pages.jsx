@@ -3,19 +3,19 @@
 import { forwardRef } from "react";
 
 export const Pages = forwardRef((props, ref) => {
-  // জোড় ও বিজোড় পেজ চেক (বইয়ের কোন দিকে শ্যাডো পড়বে তা ঠিক করার জন্য)
+  // Determine if the page is a left or right page based on the page number
   const isLeftPage = props.number % 2 === 0;
 
   return (
     <div className="page shadow-lg" ref={ref}>
-      {/* কাগজের মূল ব্যাকগ্রাউন্ড (হালকা ক্রিম/সাদা) */}
+      {/* book background (light cream/white) */}
       <div className="h-full w-full bg-[#FDFBF7] text-slate-900 flex flex-col relative overflow-hidden">
-        {/* বইয়ের মাঝখানের ভাঁজের শ্যাডো (Spine Shadow) */}
+        {/* book spine shadow */}
         <div
           className={`absolute top-0 bottom-0 w-12 pointer-events-none ${
             isLeftPage
-              ? "right-0 bg-gradient-to-l from-black/20 to-transparent"
-              : "left-0 bg-gradient-to-r from-black/20 to-transparent"
+              ? "right-0 bg-linear-to-l from-black/20 to-transparent"
+              : "left-0 bg-linear-to-r from-black/20 to-transparent"
           }`}
         ></div>
 

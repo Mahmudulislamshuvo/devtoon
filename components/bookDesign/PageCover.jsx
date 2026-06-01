@@ -5,9 +5,9 @@ import { forwardRef } from "react";
 export const PageCover = forwardRef((props, ref) => {
   return (
     <div className="page shadow-2xl" ref={ref} data-density="hard">
-      {/* মলাটের ব্যাকগ্রাউন্ড (ডার্ক ব্লু/নেভি) */}
+      {/* book background (dark blue/navy) */}
       <div className="h-full w-full bg-slate-900 border-2 border-slate-800 flex flex-col justify-center items-center relative overflow-hidden">
-        {/* বইয়ের বাইন্ডিং লাইন (বামের দিকে একটু গাঢ় অংশ) */}
+        {/* book binding line */}
         <div className="absolute left-0 top-0 bottom-0 w-5 bg-black/40 border-r border-white/10"></div>
 
         <div className="z-10 p-8 text-center">
