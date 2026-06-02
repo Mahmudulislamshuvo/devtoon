@@ -1,12 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import { FaGithub } from "react-icons/fa";
 import {
   MdAlternateEmail,
   MdBolt,
   MdDataExploration,
   MdVisibility,
 } from "react-icons/md";
+import GithubButton from "./GithubButton";
 
 const RegRightSide = () => {
   return (
@@ -158,6 +160,17 @@ const RegRightSide = () => {
               </div>
             </button>
           </form>
+          {/* <!-- OAuth Divider --> */}
+          <div className="relative flex items-center gap-sm my-sm">
+            <div className="flex-1 h-px bg-outline-variant/30"></div>
+            <span className="font-label-caps text-[9px] text-on-surface-variant/50 tracking-widest px-xs">
+              OR_CONTINUE_WITH
+            </span>
+            <div className="flex-1 h-px bg-outline-variant/30"></div>
+          </div>
+
+          <GithubButton />
+
           <div className="text-center pt-md border-t border-outline-variant/20">
             <p className="font-body-md text-code-sm text-on-surface-variant">
               Already have an account?
