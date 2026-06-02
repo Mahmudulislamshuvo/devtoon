@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { FaGithub } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 import {
   MdAlternateEmail,
   MdBolt,
@@ -44,25 +44,52 @@ const RegRightSide = () => {
             </h1>
           </div>
           <form className="space-y-sm">
-            {/* <!-- Email Input (Full Width) --> */}
-            <div className="space-y-xs">
-              <label className="font-label-caps text-[10px] text-on-surface-variant/80 ml-xs flex justify-between">
-                <span>EMAIL</span>
-              </label>
-              <div className="relative group">
-                <input
-                  className="w-full bg-surface-container-lowest/30 border border-on-surface rounded-lg py-md pl-md pr-10 text-on-surface placeholder:text-primary/50 focus:outline-none transition-all duration-300 font-code-sm focus:ring-0 focus:border-primary/50 focus:bg-primary/5 focus:shadow-[0_0_15px_rgba(34,211,238,0.2)]"
-                  placeholder="e.g. m@devtoon.ai"
-                  type="email"
-                  onFocus={(e) =>
-                    e.target.parentElement.classList.add("neon-glow-active")
-                  }
-                  onBlur={(e) =>
-                    e.target.parentElement.classList.remove("neon-glow-active")
-                  }
-                />
-                <MdAlternateEmail className="absolute right-md top-1/2 -translate-y-1/2 text-primary/30 text-[18px] group-focus-within:text-primary" />
-                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-focus-within:w-full transition-all duration-500"></div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-md">
+              {/* <!-- Name Input */}
+              <div className="space-y-xs">
+                <label className="font-label-caps text-[10px] text-on-surface-variant/80 ml-xs flex justify-between">
+                  <span>NAME</span>
+                </label>
+                <div className="relative group">
+                  <input
+                    className="w-full bg-surface-container-lowest/30 border border-on-surface rounded-lg py-md pl-md pr-10 text-on-surface placeholder:text-primary/50 focus:outline-none transition-all duration-300 font-code-sm focus:ring-0 focus:border-primary/50 focus:bg-primary/5 focus:shadow-[0_0_15px_rgba(34,211,238,0.2)]"
+                    placeholder="Enter Your Name"
+                    type="text"
+                    onFocus={(e) =>
+                      e.target.parentElement.classList.add("neon-glow-active")
+                    }
+                    onBlur={(e) =>
+                      e.target.parentElement.classList.remove(
+                        "neon-glow-active",
+                      )
+                    }
+                  />
+                  <FaUser className="absolute right-md top-1/2 -translate-y-1/2 text-primary/30 text-[18px] group-focus-within:text-primary" />
+                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-focus-within:w-full transition-all duration-500"></div>
+                </div>
+              </div>
+              {/* <!-- Email Input */}
+              <div className="space-y-xs">
+                <label className="font-label-caps text-[10px] text-on-surface-variant/80 ml-xs flex justify-between">
+                  <span>EMAIL</span>
+                </label>
+                <div className="relative group">
+                  <input
+                    className="w-full bg-surface-container-lowest/30 border border-on-surface rounded-lg py-md pl-md pr-10 text-on-surface placeholder:text-primary/50 focus:outline-none transition-all duration-300 font-code-sm focus:ring-0 focus:border-primary/50 focus:bg-primary/5 focus:shadow-[0_0_15px_rgba(34,211,238,0.2)]"
+                    placeholder="e.g. m@devtoon.ai"
+                    type="email"
+                    onFocus={(e) =>
+                      e.target.parentElement.classList.add("neon-glow-active")
+                    }
+                    onBlur={(e) =>
+                      e.target.parentElement.classList.remove(
+                        "neon-glow-active",
+                      )
+                    }
+                  />
+                  <MdAlternateEmail className="absolute right-md top-1/2 -translate-y-1/2 text-primary/30 text-[18px] group-focus-within:text-primary" />
+                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-focus-within:w-full transition-all duration-500"></div>
+                </div>
               </div>
             </div>
 

@@ -57,25 +57,25 @@ const BookFlip = () => {
         </PageCover>
 
         <Pages number={1}>
-          "The mainframe gates were breached! Our hero quickly patched the
-          firewall, locking the intruders out."
+          The mainframe gates were breached! Our hero quickly patched the
+          firewall, locking the intruders out.
         </Pages>
         <Pages number={2}>
-          "Memory fragments unified. The global state matrix is now perfectly
-          balanced and stable."
+          Memory fragments unified. The global state matrix is now perfectly
+          balanced and stable.
         </Pages>
         <Pages number={3}>
-          "A new UI element emerged from the void, glowing with neon cyan
-          aesthetics."
+          A new UI element emerged from the void, glowing with neon cyan
+          aesthetics.
         </Pages>
         <Pages number={4}>
-          "The database schema was rewritten, optimizing queries at lightspeed."
+          The database schema was rewritten, optimizing queries at lightspeed.
         </Pages>
         <Pages number={5}>
-          "The database schema was rewritten, optimizing queries at lightspeed."
+          The database schema was rewritten, optimizing queries at lightspeed.
         </Pages>
         <Pages number={6}>
-          "The database schema was rewritten, optimizing queries at lightspeed."
+          The database schema was rewritten, optimizing queries at lightspeed.
         </Pages>
 
         {/* শেষের কভার */}
