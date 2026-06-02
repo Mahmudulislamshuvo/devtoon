@@ -1,9 +1,9 @@
 import { dbConnect } from "@/lib/dbConnect";
 import User from "@/models/userSchema";
+import { pepperPasword } from "@/utils/pepperPassword";
+import bcrypt from "bcryptjs";
 import { NextResponse } from "next/server";
 import z from "zod";
-import bcrypt from "bcryptjs";
-import pepperPasword from "@/utils/pepperPassword";
 
 const registerSchema = z.object({
   name: z.string().min(2),
@@ -72,7 +72,7 @@ export async function POST(request) {
     );
     //
   } catch (error) {
-    log.error("Error in registration:", error);
+    console.error("Registration error:", error);
     return NextResponse.json(
       { success: false, message: "Failed to register" },
       { status: 500 },
