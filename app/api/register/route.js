@@ -15,9 +15,9 @@ export async function POST(request) {
   try {
     await dbConnect();
     const body = await request.json();
-    const validatedData = registerSchema.parse(body);
+    const validatedData = registerSchema.safeParse(body);
 
-    if (!validatedData) {
+    if (!validatedData.success) {
       return NextResponse.json(
         {
           success: false,
