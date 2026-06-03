@@ -14,6 +14,7 @@ const registerSchema = z.object({
 export async function POST(request) {
   try {
     await dbConnect();
+
     const body = await request.json();
     const validatedData = registerSchema.safeParse(body);
 
