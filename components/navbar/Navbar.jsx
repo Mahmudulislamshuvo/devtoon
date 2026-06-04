@@ -2,9 +2,14 @@
 
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
+import { usePathname } from "next/navigation";
+import { BiUser } from "react-icons/bi";
 
 const Navbar = () => {
   const { data: session, status } = useSession();
+
+  const name = session?.user?.name || "User";
+  const avatar = session?.user?.image || <BiUser />;
 
   return (
     <header className="bg-surface/30 backdrop-blur-xl border-b border-white/10 docked full-width fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop py-sm h-20">
