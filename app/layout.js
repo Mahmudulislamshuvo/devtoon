@@ -1,5 +1,6 @@
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
+import Providers from "@/app/providers";
 import { Geist, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -23,9 +24,11 @@ export default function RootLayout({ children }) {
           backgroundSize: "32px 32px",
         }}
       >
-        <Navbar />
-        {children}
-        <Footer />
+        <Providers>
+          <Navbar />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
