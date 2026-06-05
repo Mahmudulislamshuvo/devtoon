@@ -1,31 +1,35 @@
 import { NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 
-// public routes anyone can access
-const publicRoutes = ["/", "/login", "/register"];
+const authRoutes = ["/login", "/register"];
 
-// protected routes (login required)
+// protected routes
 const protectedRoutes = ["/dev"];
 
 export async function proxy(request) {
   const { pathname, search } = request.nextUrl;
 
-  // getting the token to check if the user is logged in and to get their role
+  // sesstion token checking
   const token = await getToken({
     req: request,
     secret: process.env.NEXTAUTH_SECRET,
   });
 
   const isLoggedIn = Boolean(token?.sub);
+
+  // checking if the current path is an auth route or a protected route
+  const isAuthRoute = authRoutes.some((route) => pathname === route);
   const isProtectedRoute = protectedRoutes.some(
     (route) => pathname === route || pathname.startsWith(route + "/"),
   );
 
-  const isPublicRoute = publicRoutes.some(
-    (route) => pathname === route || pathname.startsWith(route + "/"),
-  );
+  // if the user is trying to access an auth route (like /login or /register) while already logged in
+  if (isAuthRoute && isLoggedIn) {
+    // তাকে সরাসরি হোমে (/) পাঠিয়ে দেওয়া হবে
+    return NextResponse.redirect(new URL("/", request.url));
+  }
 
-  // 1. User is not logged in and tries to access protected routes
+  //  if the user is trying to access a protected route without being logged in
   if (isProtectedRoute && !isLoggedIn) {
     const loginUrl = new URL("/login", request.url);
     const nextPath = pathname + search;
@@ -33,16 +37,18 @@ export async function proxy(request) {
     return NextResponse.redirect(loginUrl);
   }
 
-  if (!isProtectedRoute && !isPublicRoute) {
-    return NextResponse.next();
-  }
-
   return NextResponse.next();
 }
 
 export const config = {
   matcher: [
-    /* Protected routes */
-    "/dev/:path*",
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     */
+    "/((?!api|_next/static|_next/image|favicon.ico).*)",
   ],
 };
