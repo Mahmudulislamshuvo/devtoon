@@ -196,7 +196,7 @@ const RegRightSide = () => {
             <div className="flex-1 h-px bg-outline-variant/30"></div>
           </div>
 
-          <GithubButton />
+          <GithubButton buttonText="CONTINUE_WITH_GITHUB" />
 
           <div className="text-center pt-md border-t border-outline-variant/20">
             <p className="font-body-md text-code-sm text-on-surface-variant">
