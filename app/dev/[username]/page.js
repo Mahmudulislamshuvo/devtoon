@@ -1,25 +1,8 @@
-"use client";
-
 import BookFlip from "@/components/bookDesign/BookFlip";
 import Profile from "@/components/userName/Profile";
-import { useState } from "react";
 import { MdAutoAwesome } from "react-icons/md";
 
 const DevUsernamePage = () => {
-  const [copyFeedback, setCopyFeedback] = useState(false);
-
-  const copyLink = async () => {
-    try {
-      await navigator.clipboard.writeText(window.location.href);
-      setCopyFeedback(true);
-      setTimeout(() => {
-        setCopyFeedback(false);
-      }, 2000);
-    } catch (error) {
-      console.error("Failed to copy: ", error);
-    }
-  };
-
   return (
     <main className="pt-xl pb-xl px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto space-y-xl">
       {/* <!-- Profile Header Section --> */}

@@ -1,15 +1,9 @@
+"use client";
+
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 
-import {
-  MdGroup,
-  MdHub,
-  MdPersonAdd,
-  MdShare,
-  MdTerminal,
-  MdVerified,
-  MdVerifiedUser,
-} from "react-icons/md";
+import { MdGroup, MdTerminal, MdVerifiedUser } from "react-icons/md";
 import UserInfoSketon from "../slelitons/UserInfoSketon";
 
 const Profile = () => {
@@ -38,8 +32,6 @@ const Profile = () => {
 
   if (isLoading) return <UserInfoSketon />;
   if (isError) return <div>Error: {error.message}</div>;
-
-  console.log("User Info (Cached):", userInfo);
 
   return (
     <section className="mt-lg">
@@ -74,16 +66,12 @@ const Profile = () => {
           </p>
           <div className="flex flex-wrap justify-center md:justify-start gap-sm pt-base">
             <div className="flex items-center gap-xs px-sm py-xs bg-white/5 border border-white/10 rounded-full font-label-caps text-label-caps">
-              <MdHub className="text-primary text-lg" />
-              1.2k Stars
-            </div>
-            <div className="flex items-center gap-xs px-sm py-xs bg-white/5 border border-white/10 rounded-full font-label-caps text-label-caps">
               <MdTerminal className="text-secondary text-lg" />
               450 Commits
             </div>
             <div className="flex items-center gap-xs px-sm py-xs bg-white/5 border border-white/10 rounded-full font-label-caps text-label-caps">
               <MdGroup className="text-tertiary text-lg" />
-              28 Repos
+              {userInfo?.public_repos || 0} Repos
             </div>
           </div>
         </div>

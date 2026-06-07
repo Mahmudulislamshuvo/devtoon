@@ -13,9 +13,12 @@ const Navbar = () => {
   return (
     <header className="bg-surface/30 backdrop-blur-xl border-b border-white/10 docked full-width fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop py-sm h-20">
       <div className="flex items-center gap-md">
-        <span className="font-headline-lg text-headline-lg font-bold text-primary tracking-tighter">
+        <Link
+          href="/"
+          className="font-headline-lg text-headline-lg font-bold text-primary tracking-tighter"
+        >
           DevToon
-        </span>
+        </Link>
         <nav className="hidden md:flex gap-md ml-lg">
           <Link
             className="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-200"
