@@ -49,7 +49,7 @@ export function decryptToken(encryptedDataFromDB) {
     // if the key is correct, the original token will be returned
     return originalGithubToken;
   } catch (error) {
-    // .env এর চাবি ভুল হলে বা পরিবর্তন হয়ে গেলে এখানে চলে আসবে
+    // .env key is wrong or the encrypted token is tampered, decryption will fail and an error will be thrown
     console.error("Invalid key! Cannot decrypt the token.");
     return null;
   }
