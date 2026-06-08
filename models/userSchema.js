@@ -13,7 +13,9 @@ const userSchema = new Schema(
     password: { type: String, required: true },
     updatedAt: { type: Date, default: Date.now },
     githubAccessToken: { type: String, default: null },
+    githubUsername: { type: String, default: null },
   },
+
   {
     timestamps: true,
   },
