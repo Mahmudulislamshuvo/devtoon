@@ -1,12 +1,16 @@
 import LeftSide from "@/components/dashboard/LeftSide";
 import RightSide from "@/components/dashboard/RightSide";
+import { dbConnect } from "@/lib/dbConnect";
 import { authOptions } from "@/lib/auth";
 import User from "@/models/userSchema";
 import { getServerSession } from "next-auth";
 
 const DashboardPage = async () => {
   const authenticatedUser = await getServerSession(authOptions);
-  const userName = await User.findById(authenticatedUser?.user?.id);
+  await dbConnect();
+  const userName = authenticatedUser?.user?.id
+    ? await User.findById(authenticatedUser.user.id)
+    : null;
 
   return (
     <div className="dashboard-shell">

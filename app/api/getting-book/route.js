@@ -1,4 +1,5 @@
 import { requireAuth } from "@/lib/apiGuard";
+import { dbConnect } from "@/lib/dbConnect";
 import User from "@/models/userSchema";
 import { decryptToken } from "@/utils/encryption";
 import { NextResponse } from "next/server";
@@ -17,6 +18,7 @@ export async function POST(request) {
       );
     }
 
+    await dbConnect();
     const user = await User.findOne({ email: auth.user.email });
     const githubToken = decryptToken(user.githubAccessToken);
     const username = user.githubUsername;

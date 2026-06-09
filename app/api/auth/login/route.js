@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 // import bcrypt from "bcryptjs";
 import crypto from "crypto";
 import { z } from "zod";
+import { dbConnect } from "@/lib/dbConnect";
 import { comparePepperedPassword } from "@/utils/pepperPassword";
 import {
   generateAccessToken,
@@ -30,6 +31,7 @@ export async function POST(request) {
       );
     }
 
+    await dbConnect();
     const user = await User.findOne({ email });
 
     if (!user) {

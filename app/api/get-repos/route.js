@@ -1,4 +1,5 @@
 import { requireAuth } from "@/lib/apiGuard";
+import { dbConnect } from "@/lib/dbConnect";
 import User from "@/models/userSchema";
 import { decryptToken } from "@/utils/encryption";
 import { NextResponse } from "next/server";
@@ -8,6 +9,7 @@ export async function GET(request) {
     const auth = await requireAuth(request);
     if (!auth.ok) return auth.response;
 
+    await dbConnect();
     const user = await User.findOne({ email: auth.user.email });
     if (!user || !user.githubAccessToken) {
       return NextResponse.json(

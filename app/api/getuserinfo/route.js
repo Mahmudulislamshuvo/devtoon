@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { requireAuth } from "@/lib/apiGuard";
+import { dbConnect } from "@/lib/dbConnect";
 import User from "@/models/userSchema";
 import { decryptToken } from "@/utils/encryption";
 
@@ -13,6 +14,7 @@ export async function GET(request) {
 
     const userId = auth.user.id || auth.user._id;
 
+    await dbConnect();
     const dbUser = await User.findById(userId);
 
     if (!dbUser || !dbUser.githubAccessToken) {
