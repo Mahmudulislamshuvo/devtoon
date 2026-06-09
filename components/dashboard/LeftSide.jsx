@@ -3,6 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { MdAutoAwesome, MdStar, MdSync } from "react-icons/md";
 import ReposCardSkeliton from "../slelitons/ReposCardSkeliton";
+import Link from "next/link";
 
 const LeftSide = () => {
   const {
@@ -29,8 +30,6 @@ const LeftSide = () => {
     staleTime: 1000 * 60 * 5,
     gcTime: 1000 * 60 * 60 * 24,
   });
-
-  console.log("Fetched repositories:", repositories);
 
   return (
     <div className="lg:col-span-8 space-y-md">
@@ -80,10 +79,13 @@ const LeftSide = () => {
               <div className="h-1 bg-white/10 rounded-full mb-md overflow-hidden">
                 <div className="h-full bg-primary-container w-3/4 shadow-[0_0_10px_#22d3ee]"></div>
               </div>
-              <button className="w-full py-sm bg-white/5 border border-primary/20 hover:border-primary/60 hover:bg-primary/10 text-primary font-label-caps text-label-caps rounded flex items-center justify-center gap-xs transition-all active:scale-95">
+              <Link
+                href={`/dev/${repo.repoName}`}
+                className="w-full py-sm bg-white/5 border border-primary/20 hover:border-primary/60 hover:bg-primary/10 text-primary font-label-caps text-label-caps rounded flex items-center justify-center gap-xs transition-all active:scale-95"
+              >
                 <MdAutoAwesome />
                 Generate Story
-              </button>
+              </Link>
             </div>
           ))
         ) : (

@@ -1,8 +1,17 @@
+"use client";
+
 import BookFlip from "@/components/bookDesign/BookFlip";
 import Profile from "@/components/userName/Profile";
+import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 import { MdAutoAwesome } from "react-icons/md";
 
 const DevUsernamePage = () => {
+  const pathanme = usePathname();
+  const repoName = pathanme.split("/").pop();
+
+  useEffect(() => {}, []);
+
   return (
     <main className="pt-xl pb-xl px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto space-y-xl">
       {/* <!-- Profile Header Section --> */}
