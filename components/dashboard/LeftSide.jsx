@@ -47,11 +47,9 @@ const LeftSide = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-sm">
         {isLoading ? (
           <>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md">
-              {[1, 2, 3, 4, 5, 6].map((n) => (
-                <ReposCardSkeliton key={n} />
-              ))}
-            </div>
+            {[1, 2, 3, 4, 5, 6].map((n) => (
+              <ReposCardSkeliton key={n} />
+            ))}
           </>
         ) : isError ? (
           <div className="text-red-500 col-span-1 md:col-span-2">
