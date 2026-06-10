@@ -5,10 +5,20 @@ import HTMLFlipBook from "react-pageflip";
 import PageCover from "./PageCover";
 import Pages from "./Pages";
 
-const BookFlip = () => {
+const BookFlip = ({ finalStory }) => {
   const bookRef = useRef(null);
   const [page, setPage] = useState(0);
   const [totalPage, setTotalPage] = useState(0);
+
+  // Pages আগেই বানিয়ে রাখো — HTMLFlipBook inline array পছন্দ করে না
+  const storyPages = (finalStory?.story ?? []).flatMap((chapter, i) => [
+    <Pages key={`${i}-bang`} header={chapter.chapterTitle} lang="bang">
+      {chapter.contentBang}
+    </Pages>,
+    <Pages key={`${i}-eng`} header={chapter.chapterTitle} lang="eng">
+      {chapter.contentEng}
+    </Pages>,
+  ]);
 
   const nextButtonClick = () => {
     if (bookRef.current) {
@@ -55,29 +65,7 @@ const BookFlip = () => {
             The AI Commit Story
           </span>
         </PageCover>
-
-        <Pages number={1}>
-          The mainframe gates were breached! Our hero quickly patched the
-          firewall, locking the intruders out.
-        </Pages>
-        <Pages number={2}>
-          Memory fragments unified. The global state matrix is now perfectly
-          balanced and stable.
-        </Pages>
-        <Pages number={3}>
-          A new UI element emerged from the void, glowing with neon cyan
-          aesthetics.
-        </Pages>
-        <Pages number={4}>
-          The database schema was rewritten, optimizing queries at lightspeed.
-        </Pages>
-        <Pages number={5}>
-          The database schema was rewritten, optimizing queries at lightspeed.
-        </Pages>
-        <Pages number={6}>
-          The database schema was rewritten, optimizing queries at lightspeed.
-        </Pages>
-
+        {storyPages}
         {/* শেষের কভার */}
         <PageCover>THE END</PageCover>
       </HTMLFlipBook>

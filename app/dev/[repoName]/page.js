@@ -2,15 +2,71 @@
 
 import BookFlip from "@/components/bookDesign/BookFlip";
 import Profile from "@/components/userName/Profile";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
-import { MdAutoAwesome } from "react-icons/md";
+import { useEffect, useRef, useState } from "react";
+import { MdAutoAwesome, MdErrorOutline, MdHourglassTop } from "react-icons/md";
 
 const DevUsernamePage = () => {
-  const pathanme = usePathname();
-  const repoName = pathanme.split("/").pop();
+  const pathname = usePathname();
+  const repoName = pathname.split("/").pop();
 
-  useEffect(() => {}, []);
+  const [status, setStatus] = useState("idle");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [finalStory, setFinalStory] = useState(null);
+
+  const hasFetched = useRef(false);
+
+  useEffect(() => {
+    if (!repoName || hasFetched.current) return;
+    hasFetched.current = true;
+
+    const runPipeLine = async () => {
+      try {
+        setStatus("fetching_commits");
+
+        const commitRes = await fetch("/api/getting-book", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ repoName }),
+        });
+
+        if (!commitRes.ok) {
+          const errData = await commitRes.json();
+          throw new Error(
+            errData.error || "Failed to fetch commits from GitHub",
+          );
+        }
+
+        const { cleanCommits } = await commitRes.json();
+
+        setStatus("generating_story");
+
+        const storyRes = await fetch("/api/ai-gen-book", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ repoName, cleanCommits }),
+        });
+
+        if (!storyRes.ok) {
+          const errData = await storyRes.json();
+          throw new Error(errData.error || "Failed to generate story with AI");
+        }
+
+        const result = await storyRes.json();
+
+        setFinalStory(result.data);
+        setStatus("success");
+      } catch (error) {
+        console.error("Pipeline Execution Error:", error);
+        setErrorMessage(error.message || "Something went wrong!");
+        setStatus("error");
+      }
+    };
+    runPipeLine();
+  }, [repoName]);
+
+  console.log("Current :", finalStory);
 
   return (
     <main className="pt-xl pb-xl px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto space-y-xl">
@@ -34,8 +90,66 @@ const DevUsernamePage = () => {
             </span>
           </div>
         </div>
+
+        {status === "fetching_commits" ? (
+          <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-4">
+            <MdHourglassTop className="animate-spin text-4xl text-primary" />
+            <p className="text-on-surface font-headline-md animate-pulse">
+              Your project's history is being flipped through... <br />
+              আপনার প্রজেক্টের ইতিহাসের পাতা উল্টানো হচ্ছে...
+            </p>
+            <span className="text-on-surface-variant text-body-sm">
+              Your project's commit messages are being read... <br />
+              গিটহাব থেকে কমিট মেসেজ রিড করা হচ্ছে
+            </span>
+          </div>
+        ) : status === "generating_story" ? (
+          <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-4">
+            <MdAutoAwesome className="animate-bounce text-4xl text-tertiary shadow-[0_0_15px_rgba(34,211,238,0.3)]" />
+            <p className="text-on-surface font-headline-md animate-pulse">
+              AI is generating your story... <br />
+              এআই আপনার কোডগুলো দিয়ে মহাকাব্য রচনা করছে...
+            </p>
+            <span className="text-on-surface-variant text-body-sm">
+              Your story is being crafted... <br />
+              চ্যাপ্টারগুলো সাজানো হচ্ছে, একটু অপেক্ষা করুন
+            </span>
+          </div>
+        ) : status === "error" ? (
+          <div className="flex items-center justify-center min-h-[60vh] w-full px-4">
+            <div className="glass-card border border-red-500/20 p-lg md:p-xl rounded-2xl max-w-md w-full text-center space-y-md backdrop-blur-md shadow-[0_0_30px_rgba(239,68,68,0.05)] transition-all duration-300">
+              <div className="inline-flex items-center justify-center w-14 h-14 bg-red-500/10 border border-red-500/30 rounded-full text-red-400 shadow-[0_0_15px_rgba(239,68,68,0.2)]">
+                <MdErrorOutline className="text-3xl" />
+              </div>
+
+              <div className="space-y-xs">
+                <h3 className="text-red-400 font-headline-md tracking-wide text-xl font-bold">
+                  Something went wrong!
+                </h3>
+                <p className="text-on-surface-variant font-code-sm text-sm">
+                  বই তৈরি করা সম্ভব হয়নি
+                </p>
+              </div>
+
+              <div className="bg-red-950/20 border border-red-950/50 rounded-lg p-base text-left max-h-24 overflow-y-auto custom-scrollbar">
+                <p className="text-red-300/80 font-code-sm text-xs leading-relaxed break-words">
+                  {errorMessage}
+                </p>
+              </div>
+
+              <button
+                onClick={() => window.location.reload()}
+                className="w-full py-sm bg-red-500/10 border border-red-500/30 hover:bg-red-500/20 text-red-400 font-label-caps text-label-caps rounded-lg transition-all active:scale-95"
+              >
+                Try Again / আবার চেষ্টা করুন
+              </button>
+            </div>
+          </div>
+        ) : (
+          <BookFlip finalStory={finalStory} />
+        )}
+
         {/* <!-- Bento Grid of Flip Cards --> */}
-        <BookFlip />
       </section>
       {/* <!-- Recruitment / CTA Section --> */}
       <section className="glass-pane rounded-xl p-lg md:p-xl relative overflow-hidden group">
@@ -53,11 +167,15 @@ const DevUsernamePage = () => {
           </div>
           <div className="flex flex-col sm:flex-row gap-sm w-full md:w-auto">
             <button className="bg-primary text-on-primary font-label-caps text-label-caps py-sm px-lg rounded-lg glow-cyan hover:scale-105 transition-transform whitespace-nowrap">
-              Hire @dev_neuro
+              Hire @@Mahmudulislamshuvo
             </button>
-            <button className="border border-outline text-on-surface font-label-caps text-label-caps py-sm px-lg rounded-lg hover:bg-white/5 transition-colors whitespace-nowrap">
+            <Link
+              href="https://github.com/Mahmudulislamshuvo"
+              target="_blank"
+              className="border border-outline text-on-surface font-label-caps text-label-caps py-sm px-lg rounded-lg hover:bg-white/5 transition-colors whitespace-nowrap"
+            >
               View GitHub
-            </button>
+            </Link>
           </div>
         </div>
       </section>

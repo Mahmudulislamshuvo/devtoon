@@ -65,10 +65,10 @@ const Profile = () => {
               "Fullstack Developer building the future. Architecting neon-infused experiences with TypeScript, Go, and AI orchestration."}
           </p>
           <div className="flex flex-wrap justify-center md:justify-start gap-sm pt-base">
-            <div className="flex items-center gap-xs px-sm py-xs bg-white/5 border border-white/10 rounded-full font-label-caps text-label-caps">
+            {/* <div className="flex items-center gap-xs px-sm py-xs bg-white/5 border border-white/10 rounded-full font-label-caps text-label-caps">
               <MdTerminal className="text-secondary text-lg" />
               450 Commits
-            </div>
+            </div> */}
             <div className="flex items-center gap-xs px-sm py-xs bg-white/5 border border-white/10 rounded-full font-label-caps text-label-caps">
               <MdGroup className="text-tertiary text-lg" />
               {userInfo?.public_repos || 0} Repos

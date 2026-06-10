@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { dbConnect } from "@/lib/dbConnect";
+import CommitCache from "@/models/commitCacheSchema";
 import Story from "@/models/storySchema";
 import { requireAuth } from "@/lib/apiGuard";
 
@@ -9,22 +10,23 @@ export async function POST(request) {
     const auth = await requireAuth(request);
     if (!auth.ok) return auth.response;
 
-    const { repoName, cleanCommits } = await request.json();
+    const { repoName, cleanCommits: bodyCommits } = await request.json();
 
-    if (!repoName || !cleanCommits || cleanCommits.length === 0) {
+    if (!repoName) {
       return NextResponse.json(
-        { error: "repoName and commits are required" },
+        { error: "repoName is required" },
         { status: 400 },
       );
     }
 
+    // ── Step 1: Story DB তে আগে আছে কিনা চেক ──
     const existingStory = await Story.findOne({
-      repoName: repoName,
+      repoName,
       userId: auth.user.id,
     });
 
     if (existingStory) {
-      console.log("sending existing story from DB");
+      console.log("[ai-gen-book] Existing story found in DB");
       return NextResponse.json(
         {
           success: true,
@@ -33,6 +35,26 @@ export async function POST(request) {
         },
         { status: 200 },
       );
+    }
+
+    // ── Step 2: cleanCommits — body থেকে নাও, না থাকলে commit cache থেকে ──
+    let cleanCommits = bodyCommits;
+
+    if (!cleanCommits || cleanCommits.length === 0) {
+      const cached = await CommitCache.findOne({
+        userId: auth.user.id,
+        repoName,
+      });
+
+      if (!cached || cached.cleanCommits.length === 0) {
+        return NextResponse.json(
+          { error: "No commits found. Please fetch commits first." },
+          { status: 400 },
+        );
+      }
+
+      cleanCommits = cached.cleanCommits;
+      console.log("[ai-gen-book] Using commits from cache");
     }
 
     const commitMessages = cleanCommits
@@ -47,12 +69,18 @@ CRITICAL INSTRUCTIONS FOR GENRE & CREATIVITY:
 3. Translate the developer's real-world actions into thrilling narrative events.
 4. BILINGUAL REQUIREMENT: For each chapter, you MUST provide the story in English ("contentEng") and a highly expressive, natural Bengali translation of that exact chapter ("contentBang"). Ensure the Bengali translation captures the emotional tone and cinematic feel of the story perfectly.
 
+🚨 5. STRICT LENGTH LIMIT (PREVENT PAGE OVERFLOW):
+To prevent the text from overflowing the physical book page layout, each chapter MUST be concise and compact. 
+- The "contentEng" for EACH chapter MUST be strictly between 120 to 150 words (Maximum 900 characters).
+- The "contentBang" translation MUST also match this length and be between 120 to 150 words.
+- Do NOT generate long walls of text. Ensure the story is punchy and fits entirely on one page without scrolling.
+
 Developer's Commit Logs:
 ${commitMessages}
 
 Output Requirements:
 - "storyType": The chosen genre.
-- "story": Generate 3 to 5 chapters. Each chapter must have "chapterTitle", "contentEng" (English), and "contentBang" (Bengali).`;
+- "story": Generate 3 to 5 chapters. Each chapter must have "chapterTitle", "contentEng" (English), and "contentBang" (Bengali), strictly adhering to the length limit.`;
 
     const requestBody = {
       contents: [{ parts: [{ text: promptText }] }],
@@ -99,6 +127,8 @@ Output Requirements:
     );
 
     if (!aiResponse.ok) {
+      const aiErr = await aiResponse.json().catch(() => ({}));
+      console.error("[ai-gen-book] Gemini error:", aiErr);
       throw new Error("Failed to communicate with Gemini API");
     }
 
@@ -118,6 +148,10 @@ Output Requirements:
       coverPhoto: null,
       story: storyJson.story,
     });
+
+    // Story সফলভাবে তৈরি হয়েছে — commit cache আর দরকার নেই, delete করো
+    await CommitCache.deleteOne({ userId: auth.user.id, repoName });
+    console.log(`[ai-gen-book] Commit cache deleted for repo: ${repoName}`);
 
     return NextResponse.json(
       {
