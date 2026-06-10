@@ -45,7 +45,7 @@ export async function POST(request) {
     const cleanCommits = Array.isArray(commits)
       ? commits.map((item) => ({
           message: item.commit?.message || "No message",
-          date: item.commit?.author?.date || "", // কাজের সঠিক সময়টি বের করে আনা হলো
+          date: item.commit?.author?.date || "",
         }))
       : [];
 

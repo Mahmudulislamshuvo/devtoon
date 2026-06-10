@@ -24,7 +24,7 @@ export async function POST(request) {
     });
 
     if (existingStory) {
-      console.log("ডাটাবেস থেকেই গল্প পাঠানো হচ্ছে...");
+      console.log("sending existing story from DB");
       return NextResponse.json(
         {
           success: true,
@@ -43,16 +43,16 @@ Your task is to analyze a developer's real GitHub commit logs for a project name
 
 CRITICAL INSTRUCTIONS FOR GENRE & CREATIVITY:
 1. Do NOT write a dry technical summary. Turn the code into a living universe!
-2. Be wildly creative with the genre. Based on the commit messages, dynamically pick an exciting genre. It could be Psychological Horror (e.g., fighting a cursed, invisible glitch), Cyberpunk/Sci-Fi (e.g., a netrunner breaching a megacorp), High Fantasy/Adventure (e.g., a mage forging a magical artifact), or even an unexpected Romantic/Drama twist where lines of code represent threads of destiny.
-3. Match the tone perfectly with the chosen genre. If it's Horror, make it creepy and intense. If it's Adventure, make it an epic quest.
-4. Translate the developer's real-world actions (e.g., fixing bugs, adding text normalization, implementing Pusher for real-time updates, refactoring) into thrilling narrative events (e.g., purifying poisoned wells, stabilizing reality rifts, setting up telepathic links, upgrading ancient armor).
+2. Be wildly creative with the genre. Pick an exciting genre (e.g., Psychological Horror, Cyberpunk/Sci-Fi, High Fantasy/Adventure, or Romantic/Drama).
+3. Translate the developer's real-world actions into thrilling narrative events.
+4. BILINGUAL REQUIREMENT: For each chapter, you MUST provide the story in English ("contentEng") and a highly expressive, natural Bengali translation of that exact chapter ("contentBang"). Ensure the Bengali translation captures the emotional tone and cinematic feel of the story perfectly.
 
-Developer's Commit Logs (Chronological sequence):
+Developer's Commit Logs:
 ${commitMessages}
 
 Output Requirements:
-- Identify the chosen genre in the "storyType" field (e.g., "Horror", "Cyberpunk", "Fantasy", "Adventure").
-- Generate between 3 to 5 chapters. Ensure each chapter has a compelling "chapterTitle" and deep, narrative-rich "content".`;
+- "storyType": The chosen genre.
+- "story": Generate 3 to 5 chapters. Each chapter must have "chapterTitle", "contentEng" (English), and "contentBang" (Bengali).`;
 
     const requestBody = {
       contents: [{ parts: [{ text: promptText }] }],
@@ -69,10 +69,18 @@ Output Requirements:
                 type: "OBJECT",
                 properties: {
                   chapterTitle: { type: "STRING" },
-                  content: { type: "STRING" },
+                  contentEng: {
+                    type: "STRING",
+                    description: "The English content of the chapter.",
+                  },
+                  contentBang: {
+                    type: "STRING",
+                    description:
+                      "The highly expressive Bengali translation of the English content.",
+                  },
                   chapterCover: { type: "STRING", nullable: true },
                 },
-                required: ["chapterTitle", "content"],
+                required: ["chapterTitle", "contentEng", "contentBang"],
               },
             },
           },

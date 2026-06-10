@@ -5,7 +5,11 @@ const chapterSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  content: {
+  contentEng: {
+    type: String,
+    required: true,
+  },
+  contentBang: {
     type: String,
     required: true,
   },
@@ -22,25 +26,13 @@ const storySchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    repoName: {
-      type: String,
-      required: true,
-    },
-    storyType: {
-      type: String,
-      required: true,
-    },
-    coverPhoto: {
-      type: String,
-      default: null,
-    },
+    repoName: { type: String, required: true },
+    storyType: { type: String, required: true },
+    coverPhoto: { type: String, default: null },
     story: [chapterSchema],
   },
-  {
-    timestamps: true,
-  },
+  { timestamps: true },
 );
 
 const Story = mongoose.models.Story || mongoose.model("Story", storySchema);
-
 export default Story;
