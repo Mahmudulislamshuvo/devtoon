@@ -92,28 +92,59 @@ const DevUsernamePage = () => {
         </div>
 
         {status === "fetching_commits" ? (
-          <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-4">
-            <MdHourglassTop className="animate-spin text-4xl text-primary" />
-            <p className="text-on-surface font-headline-md animate-pulse">
-              Your project's history is being flipped through... <br />
-              আপনার প্রজেক্টের ইতিহাসের পাতা উল্টানো হচ্ছে...
-            </p>
-            <span className="text-on-surface-variant text-body-sm">
-              Your project's commit messages are being read... <br />
-              গিটহাব থেকে কমিট মেসেজ রিড করা হচ্ছে
-            </span>
+          <div className="flex items-center justify-center min-h-[60vh] w-full px-4">
+            <div className="flex flex-col items-center max-w-lg w-full text-center space-y-xl">
+              <div className="relative flex items-center justify-center w-16 h-16">
+                <div className="absolute inset-0 rounded-full border border-primary/30 animate-ping opacity-75"></div>
+                <div className="absolute inset-0 rounded-full border-2 border-t-primary border-r-transparent border-b-transparent border-l-transparent animate-spin"></div>
+                <MdHourglassTop className="text-2xl text-primary animate-pulse" />
+              </div>
+
+              <div className="space-y-md">
+                <span className="px-3 py-1 bg-primary/5 border border-primary/20 rounded-full text-primary font-mono text-xs uppercase tracking-widest">
+                  Status: Scanning Repository
+                </span>
+                <div className="space-y-sm">
+                  <h3 className="text-on-surface font-headline-md text-xl md:text-2xl font-bold tracking-wide">
+                    Your project's history is being flipped through...
+                  </h3>
+                  <p className="text-on-surface-variant font-sans text-base md:text-lg leading-relaxed">
+                    আপনার প্রজেক্টের ইতিহাসের পাতা উল্টানো হচ্ছে...
+                  </p>
+                </div>
+              </div>
+
+              <div className="inline-block bg-white/[0.02] border border-white/5 py-2 px-4 rounded-lg text-xs font-mono text-on-surface-variant/60">
+                Reading commit logs from GitHub / গিটহাব থেকে ডাটা রিড করা হচ্ছে
+              </div>
+            </div>
           </div>
         ) : status === "generating_story" ? (
-          <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-4">
-            <MdAutoAwesome className="animate-bounce text-4xl text-tertiary shadow-[0_0_15px_rgba(34,211,238,0.3)]" />
-            <p className="text-on-surface font-headline-md animate-pulse">
-              AI is generating your story... <br />
-              এআই আপনার কোডগুলো দিয়ে মহাকাব্য রচনা করছে...
-            </p>
-            <span className="text-on-surface-variant text-body-sm">
-              Your story is being crafted... <br />
-              চ্যাপ্টারগুলো সাজানো হচ্ছে, একটু অপেক্ষা করুন
-            </span>
+          <div className="flex items-center justify-center min-h-[60vh] w-full px-4">
+            <div className="flex flex-col items-center max-w-lg w-full text-center space-y-xl">
+              <div className="relative flex items-center justify-center w-16 h-16">
+                <div className="absolute inset-0 rounded-full bg-tertiary/10 blur-xl animate-pulse"></div>
+                <div className="absolute inset-0 rounded-full border-2 border-dashed border-tertiary/40 animate-spin [animation-duration:6s]"></div>
+                <MdAutoAwesome className="text-3xl text-tertiary animate-bounce shadow-[0_0_20px_rgba(34,211,238,0.4)]" />
+              </div>
+              <div className="space-y-md">
+                <span className="px-3 py-1 bg-tertiary/5 border border-tertiary/20 rounded-full text-tertiary font-mono text-xs uppercase tracking-widest">
+                  Status: Crafting Narrative
+                </span>
+                <div className="space-y-sm">
+                  <h3 className="text-on-surface font-headline-md text-xl md:text-2xl font-bold tracking-wide">
+                    AI is generating your story...
+                  </h3>
+                  <p className="text-on-surface-variant font-sans text-base md:text-lg leading-relaxed">
+                    এআই আপনার কোডগুলো দিয়ে মহাকাব্য রচনা করছে...
+                  </p>
+                </div>
+              </div>
+              =
+              <div className="inline-block bg-white/[0.02] border border-white/5 py-2 px-4 rounded-lg text-xs font-mono text-on-surface-variant/60">
+                Structuring chapters & translations / চ্যাপ্টারগুলো সাজানো হচ্ছে
+              </div>
+            </div>
           </div>
         ) : status === "error" ? (
           <div className="flex items-center justify-center min-h-[60vh] w-full px-4">
