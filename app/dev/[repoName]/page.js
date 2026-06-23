@@ -184,7 +184,7 @@ const DevUsernamePage = () => {
       </section>
       {/* <!-- Recruitment / CTA Section --> */}
       <section className="glass-pane rounded-xl p-lg md:p-xl relative overflow-hidden group">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-transparent to-secondary/10 opacity-50"></div>
+        <div className="absolute inset-0 bg-linear-to-r from-primary/10 via-transparent to-secondary/10 opacity-50"></div>
         <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-lg">
           <div className="space-y-sm text-center md:text-left">
             <h2 className="font-headline-lg text-headline-lg text-on-surface">

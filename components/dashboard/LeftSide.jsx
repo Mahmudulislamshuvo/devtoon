@@ -31,6 +31,8 @@ const LeftSide = () => {
     gcTime: 1000 * 60 * 60 * 24,
   });
 
+  console.log("Fetched repositories:", repositories);
+
   return (
     <div className="lg:col-span-8 space-y-md">
       <div className="flex items-center justify-between mb-sm">

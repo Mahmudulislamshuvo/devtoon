@@ -24,7 +24,6 @@ export async function GET(request) {
       Accept: "application/vnd.github.v3+json",
     };
 
-    // ⚡ ডাটাবেস থেকে সরাসরি ইউজারনেম নেওয়া হচ্ছে (সুপার ফাস্ট)
     const username = user.githubUsername;
 
     // getting latest 6 repos sorted by last updated
