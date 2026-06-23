@@ -9,6 +9,10 @@ export async function GET(request) {
     const auth = await requireAuth(request);
     if (!auth.ok) return auth.response;
 
+    const { searchParams } = new URL(request.url);
+    const page = searchParams.get("page") || 1;
+    const perPage = 6;
+
     await dbConnect();
     const user = await User.findOne({ email: auth.user.email });
     if (!user || !user.githubAccessToken) {
@@ -26,11 +30,11 @@ export async function GET(request) {
 
     const username = user.githubUsername;
 
-    // getting latest 6 repos sorted by last updated
     const reposRes = await fetch(
-      `https://api.github.com/user/repos?sort=updated&per_page=6`,
+      `https://api.github.com/user/repos?sort=updated&per_page=${perPage}&page=${page}`,
       { headers },
     );
+
     if (!reposRes.ok) {
       return NextResponse.json(
         { error: "Failed to fetch repositories" },
@@ -51,10 +55,8 @@ export async function GET(request) {
 
         if (commitsRes.ok) {
           const commitsData = await commitsRes.json();
-
           if (Array.isArray(commitsData) && commitsData.length > 0) {
             totalCommits = 1;
-
             const linkHeader = commitsRes.headers.get("link");
             if (linkHeader) {
               const match = linkHeader.match(/page=(\d+)>;\s*rel="last"/);
@@ -65,7 +67,6 @@ export async function GET(request) {
           }
         }
 
-        // প্রতিটা ম্যাপের অবজেক্ট রিটার্ন হচ্ছে যা Promise.all একসাথে অ্যারে বানিয়ে দেবে
         return {
           id: repo.id,
           repoName: repo.name,
@@ -77,11 +78,14 @@ export async function GET(request) {
       }),
     );
 
+    const hasNextPage = finalGithubData.length === perPage;
+    const nextPage = hasNextPage ? parseInt(page) + 1 : null;
+
     return NextResponse.json(
       {
         success: true,
-        message: "Data retrieved successfully",
         data: finalGithubData,
+        nextPage: nextPage,
       },
       { status: 200 },
     );
