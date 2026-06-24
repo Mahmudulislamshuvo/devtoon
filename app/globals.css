@@ -102,6 +102,10 @@
 
   --spacing-margin-mobile: 16px;
   --spacing-margin-desktop: 64px;
+  --spacing-container-max-width: 1440px;
+  --spacing-margin-edge: 64px;
+  --spacing-block-gap: 32px;
+  --spacing-gutter-lg: 48px;
 
   /* =========================================
    FONTS
@@ -155,6 +159,20 @@
   --text-code-sm: 14px;
   --text-code-sm--line-height: 1.5;
   --text-code-sm--font-weight: 400;
+  --text-display-lg: 48px;
+  --text-display-lg--line-height: 1.1;
+  --text-display-lg--letter-spacing: -0.04em;
+  --text-display-lg--font-weight: 700;
+
+  /* Code MD */
+  --text-code-md: 14px;
+  --text-code-md--line-height: 1.5;
+  --text-code-md--font-weight: 400;
+
+  /* Body LG */
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 1.8;
+  --text-body-lg--font-weight: 400;
 }
 
 @layer utilities {
