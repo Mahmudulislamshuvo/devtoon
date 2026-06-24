@@ -31,7 +31,7 @@ const Navbar = () => {
             >
               Dashboard
             </Link>
-            {/* 🔴 এখানে ইউজারের নাম এবং ছবি/আইকন যুক্ত করা হয়েছে 🔴 */}
+
             <div className="flex items-center gap-2 mr-2">
               <div className="w-8 h-8 rounded-full overflow-hidden bg-surface/50 border border-white/20 flex items-center justify-center shrink-0">
                 {session?.user?.image ? (
@@ -70,7 +70,7 @@ const Navbar = () => {
 
         {status !== "authenticated" && (
           <Link
-            className="bg-primary-container text-on-primary-container font-label-caps text-label-caps px-lg py-xs rounded-lg font-bold hover:shadow-[0_0_15px_#22d3ee] transition-all duration-300 active:scale-95 text-[12px] tracking-[0.1em]"
+            className="bg-primary-container text-on-primary-container font-label-caps text-label-caps px-lg py-xs rounded-lg font-bold hover:shadow-[0_0_15px_#22d3ee] transition-all duration-300 active:scale-95 text-[12px] tracking-widest"
             href="/register"
           >
             Sign Up

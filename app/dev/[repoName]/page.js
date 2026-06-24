@@ -21,8 +21,7 @@ const DevUsernamePage = () => {
   useEffect(() => {
     if (!repoName || hasFetched.current) return;
     hasFetched.current = true;
-
-    // ── Retry helper: ৩ বার পর্যন্ত চেষ্টা করে, প্রতিবার delay বাড়ে ──
+    // retry helper
     const fetchWithRetry = async (url, options, maxRetries = 3) => {
       let lastError;
       for (let attempt = 1; attempt <= maxRetries; attempt++) {
@@ -44,9 +43,7 @@ const DevUsernamePage = () => {
             );
             setRetryAttempt(attempt);
             // Exponential backoff: 1s → 2s → 4s
-            await new Promise((resolve) =>
-              setTimeout(resolve, attempt * 1000),
-            );
+            await new Promise((resolve) => setTimeout(resolve, attempt * 1000));
             setRetryAttempt(0);
           }
         }
@@ -86,8 +83,6 @@ const DevUsernamePage = () => {
     };
     runPipeLine();
   }, [repoName]);
-
-  console.log("Current :", finalStory);
 
   return (
     <main className="pt-xl pb-xl px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto space-y-xl">

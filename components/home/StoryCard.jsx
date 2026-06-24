@@ -1,18 +1,15 @@
 import { MdTerminal } from "react-icons/md";
 import { RiArrowRightFill } from "react-icons/ri";
 import Link from "next/link";
-import UserDetails from "./UserDetails";
 
 const StoryCard = ({ story }) => {
   if (!story) return null;
-
-  console.log("Rendering StoryCard for story:", story);
 
   return (
     <>
       <article className="bg-surface-container-low border group flex flex-col h-full border-white/20 relative">
         <Link
-          href={`/dev/${story?.repoName}`}
+          href={`/story/${story?._id}`}
           className="absolute inset-0 z-0 opacity-0"
           aria-label={`View ${story?.repoName}`}
         />

@@ -74,6 +74,26 @@ export const getStoriesInfo = async (page = 1, limit = 10) => {
   }
 };
 
+export const getStoryById = async (storyId) => {
+  try {
+    await dbConnect();
+
+    const story = await Story.findById(storyId)
+      .populate({
+        path: "userId",
+        select: "name githubUsername",
+      })
+      .lean();
+
+    if (!story) return null;
+
+    return JSON.parse(JSON.stringify(story));
+  } catch (error) {
+    console.error("Error fetching story by id:", error);
+    return null;
+  }
+};
+
 export const getUserInfoById = async (userId) => {
   try {
     await dbConnect();
