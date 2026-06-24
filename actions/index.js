@@ -2,6 +2,7 @@
 
 import { dbConnect } from "@/lib/dbConnect";
 import Story from "@/models/storySchema";
+import User from "@/models/userSchema";
 
 const fetchImageFromUnsplash = async (query) => {
   try {
@@ -67,5 +68,22 @@ export const getStoriesInfo = async (page = 1, limit = 10) => {
   } catch (error) {
     console.error("Error fetching stories:", error);
     return [];
+  }
+};
+
+export const getUserInfoById = async (userId) => {
+  try {
+    await dbConnect();
+    const user = await User.findById(userId)
+      .select("-password", "-githubAccessToken")
+      .lean();
+
+    if (!user) {
+      NextResponse.json({ error: "User not found" }, { status: 404 });
+    }
+    return JSON.parse(JSON.stringify(user));
+  } catch (error) {
+    console.error("Error fetching user info:", error);
+    NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 };

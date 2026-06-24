@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import StoryCard from "../home/StoryCard";
 import StoryCardSkeliton from "./StoryCardSkeliton";
+import { getStoriesInfo } from "@/actions";
 
 const StoriesInfinityScrolling = ({ initialStories }) => {
   const [stories, setStories] = useState(initialStories);
@@ -59,19 +60,9 @@ const StoriesInfinityScrolling = ({ initialStories }) => {
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         id="story-stream"
       >
-        {stories.map((story, index) => {
-          if (stories.length === index + 1) {
-            return (
-              <div ref={lastStoryElementRef} key={story._id}>
-                {story?.story?.map((s) => (
-                  <StoryCard key={s._id} story={s} />
-                ))}
-              </div>
-            );
-          } else {
-            return <StoryCard key={story._id} story={story} />;
-          }
-        })}
+        {stories.map((story) => (
+          <StoryCard key={story._id} story={story} />
+        ))}
 
         {loading && (
           <>
@@ -82,7 +73,9 @@ const StoriesInfinityScrolling = ({ initialStories }) => {
         )}
       </section>
 
-      {!hasMore && (
+      {hasMore ? (
+        <div ref={lastStoryElementRef} className="h-10 w-full mt-4" />
+      ) : (
         <div className="text-center mt-10 text-gray-500 font-medium pb-8">
           No more stories to load.
         </div>

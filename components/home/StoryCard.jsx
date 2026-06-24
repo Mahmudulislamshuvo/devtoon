@@ -1,33 +1,37 @@
 import { MdTerminal } from "react-icons/md";
 import { RiArrowRightFill } from "react-icons/ri";
-import Link from "next/link"; // Next.js এর লিংকের জন্য
+import Link from "next/link";
 
 const StoryCard = ({ story }) => {
   if (!story) return null;
 
+  console.log("StoryCard rendering with story:", story);
+
   return (
-    <Link href={`/dev/${story.repoName}`}>
-      <article className="bg-surface-container-low border group flex flex-col h-full border-white/20">
+    <>
+      <article className="bg-surface-container-low border group flex flex-col h-full border-white/20 relative">
+        <Link
+          href={`/dev/${story.repoName}`}
+          className="absolute inset-0 z-0 opacity-0"
+          aria-label={`View ${story.repoName}`}
+        />
         <div className="relative h-60 overflow-hidden shrink-0">
           <div
             className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
             data-alt={story.repoName}
-            // 🟢 Fix: ডাবল কোটেশন বাদ দিয়ে সরাসরি ব্যাকটিক (``) ব্যবহার করা হয়েছে
             style={{
               backgroundImage: `url(${story.coverPhoto})`,
             }}
           ></div>
           <div className="absolute inset-0 bg-linear-to-t from-background/80 via-transparent to-transparent"></div>
           <div className="absolute bottom-4 left-4">
-            {/* 🟢 ডাইনামিক Story Type বসানো হয়েছে */}
             <span className="bg-primary text-background font-label-sm text-[10px] px-2 py-0.5 inline-block font-bold uppercase">
               {story.storyType}
             </span>
           </div>
         </div>
 
-        <div className="p-6 flex flex-col flex-grow">
-          {/* 🟢 ডাইনামিক Title হিসেবে repoName বসানো হয়েছে এবং হাইফেন সড়িয়ে স্পেস দেওয়া হয়েছে */}
+        <div className="p-6 flex flex-col grow">
           <h2 className="font-headline-md text-[20px] text-on-surface group-hover:text-primary transition-colors line-clamp-2 mb-6 capitalize">
             {story.repoName?.replace(/-/g, " ")}
           </h2>
@@ -51,9 +55,8 @@ const StoryCard = ({ story }) => {
               </div>
             </div>
 
-            {/* 🟢 ডাইনামিক লিংক তৈরি করা হয়েছে যাতে ক্লিক করলে ঐ নির্দিষ্ট স্টোরিতে যায় */}
             <Link
-              className="text-primary hover:text-primary-container transition-colors"
+              className="text-primary hover:text-primary-container transition-colors relative z-10"
               href={`/story/${story._id}`}
             >
               <span className="flex items-center gap-1">
@@ -63,7 +66,7 @@ const StoryCard = ({ story }) => {
           </div>
         </div>
       </article>
-    </Link>
+    </>
   );
 };
 
