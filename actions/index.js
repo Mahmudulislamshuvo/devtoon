@@ -37,8 +37,11 @@ export const getStoriesInfo = async (page = 1, limit = 10) => {
     const skip = (page - 1) * limit;
 
     let stories = await Story.find({})
-
       .select("_id userId repoName storyType coverPhoto")
+      .populate({
+        path: "userId",
+        select: "name githubUsername",
+      })
       .sort({ createdAt: -1 })
       .skip(skip)
       .limit(limit)
@@ -74,16 +77,19 @@ export const getStoriesInfo = async (page = 1, limit = 10) => {
 export const getUserInfoById = async (userId) => {
   try {
     await dbConnect();
+
     const user = await User.findById(userId)
-      .select("-password", "-githubAccessToken")
+      .select("-password -githubAccessToken")
       .lean();
 
     if (!user) {
-      NextResponse.json({ error: "User not found" }, { status: 404 });
+      return null;
     }
+
     return JSON.parse(JSON.stringify(user));
   } catch (error) {
     console.error("Error fetching user info:", error);
-    NextResponse.json({ error: "Internal server error" }, { status: 500 });
+
+    return null;
   }
 };

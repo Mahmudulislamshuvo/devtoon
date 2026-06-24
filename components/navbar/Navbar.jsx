@@ -19,19 +19,18 @@ const Navbar = () => {
         >
           DevToon
         </Link>
-        <nav className="hidden md:flex gap-md ml-lg">
-          <Link
-            className="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-200"
-            href="/gallery"
-          >
-            Gallery
-          </Link>
-        </nav>
+        <nav className="hidden md:flex gap-md ml-lg"></nav>
       </div>
 
       <div className="flex items-center gap-sm md:gap-md">
         {status === "authenticated" ? (
           <>
+            <Link
+              className="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-200"
+              href="/dev"
+            >
+              Dashboard
+            </Link>
             {/* 🔴 এখানে ইউজারের নাম এবং ছবি/আইকন যুক্ত করা হয়েছে 🔴 */}
             <div className="flex items-center gap-2 mr-2">
               <div className="w-8 h-8 rounded-full overflow-hidden bg-surface/50 border border-white/20 flex items-center justify-center shrink-0">
