@@ -75,20 +75,19 @@ const DevUsernamePage = () => {
       {/* <!-- Main Content: Interactive Storyboard --> */}
       <section className="space-y-lg">
         <div className="flex items-center justify-between">
-          <div className="space-y-base">
-            <h2 className="font-headline-lg text-headline-lg text-primary flex items-center gap-sm">
-              <MdAutoAwesome className="text-3xl" />
+          <div>
+            <h2 className="text-lg font-bold text-primary flex items-center gap-2">
+              <MdAutoAwesome className="text-xl" />
               Dev Storyboard
             </h2>
-            <p className="font-code-sm text-code-sm text-on-surface-variant">
+            <p className="text-xs text-on-surface-variant mt-1">
               Commit snapshots from the latest narrative arcs
             </p>
           </div>
-          <div className="flex gap-sm">
-            <span className="px-sm py-xs bg-secondary/10 text-secondary border border-secondary/30 rounded font-label-caps text-label-caps">
-              AI Narrative
-            </span>
-          </div>
+
+          <span className="px-2 py-1 bg-secondary/10 text-secondary border border-secondary/30 rounded text-[10px] font-bold uppercase tracking-wider">
+            AI Narrative
+          </span>
         </div>
 
         {status === "fetching_commits" ? (
