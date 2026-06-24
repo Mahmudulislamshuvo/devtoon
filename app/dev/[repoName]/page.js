@@ -93,7 +93,7 @@ const DevUsernamePage = () => {
 
         {status === "fetching_commits" ? (
           <div className="flex items-center justify-center min-h-[60vh] w-full px-4">
-            <div className="flex flex-col items-center max-w-lg w-full text-center space-y-xl">
+            <div className="flex flex-col items-center w-full text-center space-y-xl">
               <div className="relative flex items-center justify-center w-16 h-16">
                 <div className="absolute inset-0 rounded-full border border-primary/30 animate-ping opacity-75"></div>
                 <div className="absolute inset-0 rounded-full border-2 border-t-primary border-r-transparent border-b-transparent border-l-transparent animate-spin"></div>
