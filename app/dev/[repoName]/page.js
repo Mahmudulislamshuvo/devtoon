@@ -14,6 +14,7 @@ const DevUsernamePage = () => {
   const [status, setStatus] = useState("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const [finalStory, setFinalStory] = useState(null);
+  const [retryAttempt, setRetryAttempt] = useState(0);
 
   const hasFetched = useRef(false);
 
@@ -21,44 +22,64 @@ const DevUsernamePage = () => {
     if (!repoName || hasFetched.current) return;
     hasFetched.current = true;
 
+    // ── Retry helper: ৩ বার পর্যন্ত চেষ্টা করে, প্রতিবার delay বাড়ে ──
+    const fetchWithRetry = async (url, options, maxRetries = 3) => {
+      let lastError;
+      for (let attempt = 1; attempt <= maxRetries; attempt++) {
+        try {
+          const res = await fetch(url, options);
+          if (!res.ok) {
+            const errData = await res.json().catch(() => ({}));
+            throw new Error(
+              errData.error || `Request failed with status ${res.status}`,
+            );
+          }
+          return res;
+        } catch (err) {
+          lastError = err;
+          if (attempt < maxRetries) {
+            console.warn(
+              `[Retry] Attempt ${attempt}/${maxRetries} failed for ${url}. Retrying in ${attempt}s...`,
+              err.message,
+            );
+            setRetryAttempt(attempt);
+            // Exponential backoff: 1s → 2s → 4s
+            await new Promise((resolve) =>
+              setTimeout(resolve, attempt * 1000),
+            );
+            setRetryAttempt(0);
+          }
+        }
+      }
+      throw lastError;
+    };
+
     const runPipeLine = async () => {
       try {
         setStatus("fetching_commits");
 
-        const commitRes = await fetch("/api/getting-book", {
+        const commitRes = await fetchWithRetry("/api/getting-book", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ repoName }),
         });
 
-        if (!commitRes.ok) {
-          const errData = await commitRes.json();
-          throw new Error(
-            errData.error || "Failed to fetch commits from GitHub",
-          );
-        }
-
         const { cleanCommits } = await commitRes.json();
 
         setStatus("generating_story");
 
-        const storyRes = await fetch("/api/ai-gen-book", {
+        const storyRes = await fetchWithRetry("/api/ai-gen-book", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ repoName, cleanCommits }),
         });
-
-        if (!storyRes.ok) {
-          const errData = await storyRes.json();
-          throw new Error(errData.error || "Failed to generate story with AI");
-        }
 
         const result = await storyRes.json();
 
         setFinalStory(result.data);
         setStatus("success");
       } catch (error) {
-        console.error("Pipeline Execution Error:", error);
+        console.error("Pipeline Execution Error (after all retries):", error);
         setErrorMessage(error.message || "Something went wrong!");
         setStatus("error");
       }
@@ -101,7 +122,9 @@ const DevUsernamePage = () => {
 
               <div className="space-y-md">
                 <span className="px-3 py-1 bg-primary/5 border border-primary/20 rounded-full text-primary font-mono text-xs uppercase tracking-widest">
-                  Status: Scanning Repository
+                  {retryAttempt > 0
+                    ? `Retrying... ${retryAttempt}/3`
+                    : "Status: Scanning Repository"}
                 </span>
                 <div className="space-y-sm">
                   <h3 className="text-on-surface font-headline-md text-xl md:text-2xl font-bold tracking-wide">
@@ -128,7 +151,9 @@ const DevUsernamePage = () => {
               </div>
               <div className="space-y-md">
                 <span className="px-3 py-1 bg-tertiary/5 border border-tertiary/20 rounded-full text-tertiary font-mono text-xs uppercase tracking-widest">
-                  Status: Crafting Narrative
+                  {retryAttempt > 0
+                    ? `Retrying... ${retryAttempt}/3`
+                    : "Status: Crafting Narrative"}
                 </span>
                 <div className="space-y-sm">
                   <h3 className="text-on-surface font-headline-md text-xl md:text-2xl font-bold tracking-wide">

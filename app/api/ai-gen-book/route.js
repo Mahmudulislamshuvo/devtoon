@@ -117,7 +117,38 @@ Output Requirements:
       },
     };
 
-    const aiResponse = await fetch(
+    // ── Gemini API রিট্রাই হেল্পার (মাক্স ৩ বার) ──
+    const fetchGeminiWithRetry = async (url, options, maxRetries = 3) => {
+      let lastError;
+      for (let attempt = 1; attempt <= maxRetries; attempt++) {
+        try {
+          const res = await fetch(url, options);
+          if (!res.ok) {
+            const aiErr = await res.json().catch(() => ({}));
+            console.error(
+              `[ai-gen-book] Gemini error (attempt ${attempt}/${maxRetries}):`,
+              aiErr,
+            );
+            throw new Error(
+              aiErr?.error?.message || "Failed to communicate with Gemini API",
+            );
+          }
+          return res;
+        } catch (err) {
+          lastError = err;
+          if (attempt < maxRetries) {
+            const delayMs = attempt * 1500; // 1.5s → 3s → ...
+            console.warn(
+              `[ai-gen-book] Retry ${attempt}/${maxRetries} after ${delayMs}ms — ${err.message}`,
+            );
+            await new Promise((resolve) => setTimeout(resolve, delayMs));
+          }
+        }
+      }
+      throw lastError;
+    };
+
+    const aiResponse = await fetchGeminiWithRetry(
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
       {
         method: "POST",
@@ -125,12 +156,6 @@ Output Requirements:
         body: JSON.stringify(requestBody),
       },
     );
-
-    if (!aiResponse.ok) {
-      const aiErr = await aiResponse.json().catch(() => ({}));
-      console.error("[ai-gen-book] Gemini error:", aiErr);
-      throw new Error("Failed to communicate with Gemini API");
-    }
 
     const aiData = await aiResponse.json();
     const generatedText = aiData.candidates?.[0]?.content?.parts?.[0]?.text;

@@ -5,8 +5,6 @@ import Link from "next/link"; // Next.js এর লিংকের জন্য
 const StoryCard = ({ story }) => {
   if (!story) return null;
 
-  console.log("Rendering StoryCard for story:", story);
-
   return (
     <Link href={`/dev/${story.repoName}`}>
       <article className="bg-surface-container-low border group flex flex-col h-full border-white/20">
