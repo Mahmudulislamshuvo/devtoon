@@ -1,7 +1,7 @@
 import { getStoryById } from "@/actions";
 import BookFlip from "@/components/bookDesign/BookFlip";
 import Link from "next/link";
-import { MdAutoAwesome, MdArrowBack, MdErrorOutline } from "react-icons/md";
+import { MdArrowBack, MdErrorOutline } from "react-icons/md";
 
 export async function generateMetadata({ params }) {
   const { storyId } = await params;
