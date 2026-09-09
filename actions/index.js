@@ -149,3 +149,38 @@ export const getUserRecentStories = async (userId, limit = 3) => {
     return [];
   }
 };
+
+export const getUserAllStories = async (userId) => {
+  try {
+    await dbConnect();
+    
+    let stories = await Story.find({ userId })
+      .select("_id repoName storyType coverPhoto createdAt")
+      .sort({ createdAt: -1 })
+      .lean();
+      
+    return JSON.parse(JSON.stringify(stories));
+  } catch (error) {
+    console.error("Error fetching all user stories:", error);
+    return [];
+  }
+};
+
+export const deleteStory = async (storyId, userId) => {
+  try {
+    await dbConnect();
+    
+    // Ensure the story belongs to the user
+    const story = await Story.findOne({ _id: storyId, userId });
+    
+    if (!story) {
+      return { success: false, message: "Story not found or unauthorized." };
+    }
+    
+    await Story.deleteOne({ _id: storyId });
+    return { success: true, message: "Story deleted successfully." };
+  } catch (error) {
+    console.error("Error deleting story:", error);
+    return { success: false, message: "Internal Server Error" };
+  }
+};
