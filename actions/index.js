@@ -113,3 +113,39 @@ export const getUserInfoById = async (userId) => {
     return null;
   }
 };
+
+export const getUserRecentStories = async (userId, limit = 3) => {
+  try {
+    await dbConnect();
+    
+    let stories = await Story.find({ userId })
+      .select("_id repoName storyType coverPhoto createdAt")
+      .sort({ createdAt: -1 })
+      .limit(limit)
+      .lean();
+      
+    // Just in case they don't have a cover photo, fetch one
+    const updatePromises = stories.map(async (story) => {
+      if (!story.coverPhoto) {
+        const newImageUrl = await fetchImageFromUnsplash(
+          story.storyType || "technology"
+        );
+        if (newImageUrl) {
+          await Story.updateOne(
+            { _id: story._id },
+            { $set: { coverPhoto: newImageUrl } }
+          );
+          story.coverPhoto = newImageUrl;
+        }
+      }
+      return story;
+    });
+
+    stories = await Promise.all(updatePromises);
+      
+    return JSON.parse(JSON.stringify(stories));
+  } catch (error) {
+    console.error("Error fetching user recent stories:", error);
+    return [];
+  }
+};

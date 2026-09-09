@@ -5,6 +5,7 @@ import { authOptions } from "@/lib/auth";
 import User from "@/models/userSchema";
 import { getServerSession } from "next-auth";
 import GithubConnectBanner from "@/components/dashboard/GithubConnectBanner";
+import { getUserRecentStories } from "@/actions";
 
 const DashboardPage = async () => {
   const authenticatedUser = await getServerSession(authOptions);
@@ -14,6 +15,11 @@ const DashboardPage = async () => {
     : null;
 
   const hasGithub = !!userName?.githubUsername;
+  
+  let recentStories = [];
+  if (hasGithub && userName) {
+    recentStories = await getUserRecentStories(userName._id, 3);
+  }
 
   return (
     <div className="dashboard-shell">
@@ -28,7 +34,7 @@ const DashboardPage = async () => {
           </h1>
           <p className="text-on-surface-variant font-code-sm text-code-sm">
             {hasGithub
-              ? "SYSTEM STATUS: SYNCED WITH GITHUB CLOUD // 04 NEW COMMITS DETECTED"
+              ? "SYSTEM STATUS: SYNCED WITH GITHUB CLOUD"
               : "SYSTEM STATUS: GITHUB NOT CONNECTED // LINK YOUR ACCOUNT TO GET STARTED"}
           </p>
         </div>
@@ -42,7 +48,7 @@ const DashboardPage = async () => {
             {/* Left Side: Repositories (Main Content) */}
             <LeftSide />
             {/* Right Side: Recent Stories (Sidebar) */}
-            <RightSide />
+            <RightSide recentStories={recentStories} />
           </div>
         )}
       </main>
