@@ -60,28 +60,30 @@ export async function POST(request) {
     const commitMessages = cleanCommits
       .map((c, index) => `${index + 1}. ${c.message}`)
       .join("\n");
-    const promptText = `You are an elite, highly imaginative novelist and anime/manga story writer. 
-Your task is to analyze a developer's real GitHub commit logs for a project named "${repoName}" and transform them into an epic, highly engaging fictional story divided into 3 to 5 chapters.
+    const promptText = `You are an imaginative storyteller and anime/manga writer. 
+Your task is to analyze a developer's real GitHub commit logs for a project named "${repoName}" and transform them into an exciting fictional story divided into 3 to 5 chapters.
 
 CRITICAL INSTRUCTIONS FOR GENRE & CREATIVITY:
 1. Do NOT write a dry technical summary. Turn the code into a living universe!
-2. Be wildly creative with the genre. Pick an exciting genre (e.g., Psychological Horror, Cyberpunk/Sci-Fi, High Fantasy/Adventure, or Romantic/Drama).
+2. Pick an exciting genre (e.g., Cyberpunk/Sci-Fi, High Fantasy/Adventure, Horror, or Drama).
 3. Translate the developer's real-world actions into thrilling narrative events.
-4. BILINGUAL REQUIREMENT: For each chapter, you MUST provide the story in English ("contentEng") and a highly expressive, natural Bengali translation of that exact chapter ("contentBang"). Ensure the Bengali translation captures the emotional tone and cinematic feel of the story perfectly.
 
-🚨 5. STRICT LENGTH LIMIT (PREVENT PAGE OVERFLOW):
-To prevent the text from overflowing the physical book page layout, each chapter MUST be concise and compact. 
+LANGUAGE & TONE REQUIREMENT (EASY & NATURAL):
+- ENGLISH ("contentEng"): Use simple, natural, and engaging English. Avoid overly complex, archaic, or obscure vocabulary so it is easy and fun for anyone to read.
+- BENGALI ("contentBang"): Use simple, natural, and standard colloquial Bengali (সহজ ও সাবলীল চলিত বাংলা). Avoid heavy, archaic, or overly formal Sadhu words (সাধু ভাষা পরিহার করুন). It should read like a modern, exciting storybook in plain Bengali.
+
+🚨 STRICT LENGTH LIMIT (PREVENT PAGE OVERFLOW):
+To prevent the text from overflowing the physical book page layout, each chapter MUST be concise and compact:
 - The "contentEng" for EACH chapter MUST be strictly between 120 to 150 words (Maximum 900 characters).
 - The "contentBang" translation MUST also match this length and be between 120 to 150 words.
-- Do NOT generate long walls of text. Ensure the story is punchy and fits entirely on one page without scrolling.
+- Do NOT generate long walls of text. Keep sentences clean, punchy, and easy to follow.
 
 Developer's Commit Logs:
 ${commitMessages}
 
 Output Requirements:
 - "storyType": The chosen genre.
-- "story": Generate 3 to 5 chapters. Each chapter must have "chapterTitle", "contentEng" (English), and "contentBang" (Bengali), strictly adhering to the length limit.`;
-
+- "story": Generate 3 to 5 chapters. Each chapter must have "chapterTitle", "contentEng" (simple English), and "contentBang" (simple Bengali), strictly adhering to the length limit.`;
     const requestBody = {
       contents: [{ parts: [{ text: promptText }] }],
       generationConfig: {

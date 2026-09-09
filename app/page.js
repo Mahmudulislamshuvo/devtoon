@@ -1,5 +1,6 @@
 import { getStoriesInfo } from "@/actions";
 import StoriesInfinityScrolling from "@/components/slelitons/StoriesInfinityScrolling";
+import StoryCta from "@/components/home/StoryCta";
 
 export default async function Home() {
   const initialStories = await getStoriesInfo(1, 10);
@@ -7,8 +8,10 @@ export default async function Home() {
     <div className="flex flex-col min-h-screen">
       <main className="grow pt-24 pb-block-gap">
         <div className="max-w-container-max-width mx-auto px-margin-edge">
+          <StoryCta />
+
           {/* */}
-          <header className="mb-block-gap border-l-4 border-primary pl-8 py-4">
+          <header className="mb-block-gap mt-16 border-l-4 border-primary pl-8 py-4">
             <h1 className="font-display-lg text-display-lg text-on-surface uppercase tracking-tight">
               Story Stream
             </h1>
