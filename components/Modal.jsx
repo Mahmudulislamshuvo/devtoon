@@ -35,7 +35,7 @@ const Modal = ({
       ></div>
 
       {/* Modal Dialog */}
-      <div className="glass-card relative z-10 w-full rounded-2xl p-6 shadow-2xl animate-in fade-in zoom-in-95 duration-200">
+      <div className="glass-card relative z-10 w-full max-w-[90%] md:max-w-[70%] lg:max-w-[60%] rounded-2xl p-6 shadow-2xl animate-in fade-in zoom-in-95 duration-200">
         <h3 className="text-xl font-bold text-on-surface mb-2">{title}</h3>
         <p className="text-on-surface-variant mb-6 leading-relaxed">
           {message}
