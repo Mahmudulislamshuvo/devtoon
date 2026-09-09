@@ -17,11 +17,11 @@ const ArchiveClient = ({ initialStories, userId }) => {
   const handleDeleteConfirm = async () => {
     if (!storyToDelete) return;
     setIsDeleting(true);
-    
+
     try {
       const res = await deleteStory(storyToDelete._id, userId);
       if (res.success) {
-        setStories(stories.filter(s => s._id !== storyToDelete._id));
+        setStories(stories.filter((s) => s._id !== storyToDelete._id));
       } else {
         alert(res.message);
       }
@@ -38,7 +38,7 @@ const ArchiveClient = ({ initialStories, userId }) => {
   if (stories.length === 0) {
     return (
       <div className="text-center mt-10 text-on-surface-variant font-medium pb-8 border border-outline-variant/30 rounded-xl p-12 bg-surface-container/20">
-        You haven't generated any stories yet.
+        You haven&apos;t generated any stories yet.
       </div>
     );
   }
@@ -47,13 +47,16 @@ const ArchiveClient = ({ initialStories, userId }) => {
     <>
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {stories.map((story) => (
-          <article key={story._id} className="bg-surface-container-low border group flex flex-col h-full border-white/20 relative">
+          <article
+            key={story._id}
+            className="bg-surface-container-low border group flex flex-col h-full border-white/20 relative"
+          >
             <Link
               href={`/story/${story._id}`}
               className="absolute inset-0 z-0 opacity-0"
               aria-label={`View ${story.repoName}`}
             />
-            
+
             {/* Delete Button overlay */}
             <button
               onClick={(e) => {
