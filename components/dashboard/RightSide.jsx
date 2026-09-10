@@ -108,13 +108,11 @@ const RightSide = ({ recentStories = [], showHeader = true }) => {
           )}
         </div>
         
-        {recentStories.length > 0 && (
-          <div className="bg-white/5 p-sm border-t border-white/10 text-center">
-            <Link href="/dev/archive" className="font-label-caps text-label-caps text-primary hover:underline">
-              View All Stories
-            </Link>
-          </div>
-        )}
+        <div className="bg-white/5 p-sm border-t border-white/10 text-center">
+          <Link href="/dev/archive" className="font-label-caps text-label-caps text-primary hover:underline">
+            View All Archive Stories →
+          </Link>
+        </div>
       </div>
     </aside>
   );

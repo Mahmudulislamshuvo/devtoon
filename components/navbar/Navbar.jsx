@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import { BiUser } from "react-icons/bi";
-import { MdMenu, MdClose, MdDashboard, MdLogout, MdLogin, MdPersonAdd } from "react-icons/md";
+import { MdMenu, MdClose, MdDashboard, MdLogout, MdLogin, MdPersonAdd, MdArchive } from "react-icons/md";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
@@ -50,6 +50,13 @@ const Navbar = () => {
                 href="/dev"
               >
                 Dashboard
+              </Link>
+
+              <Link
+                className="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-200"
+                href="/dev/archive"
+              >
+                Archive
               </Link>
 
               <div className="flex items-center gap-2 mr-2">
@@ -201,6 +208,15 @@ const Navbar = () => {
               >
                 <MdDashboard className="text-xl shrink-0" />
                 Dashboard
+              </Link>
+
+              <Link
+                href="/dev/archive"
+                onClick={closeSheet}
+                className="flex items-center gap-3 w-full px-4 py-3.5 rounded-xl text-on-surface-variant hover:text-primary hover:bg-primary/10 transition-all duration-200 font-label-caps text-label-caps"
+              >
+                <MdArchive className="text-xl shrink-0" />
+                Story Archive
               </Link>
 
               <button
