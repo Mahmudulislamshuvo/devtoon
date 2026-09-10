@@ -35,12 +35,12 @@ const Profile = () => {
 
   return (
     <section className="mt-lg">
-      <div className="glass-pane p-lg rounded-xl grid grid-cols-1 md:grid-cols-12 gap-lg items-center relative overflow-hidden">
+      <div className="glass-pane p-4 xs:p-6 md:p-lg rounded-xl grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-lg items-center relative overflow-hidden">
         <div className="absolute -top-24 -right-24 w-64 h-64 bg-primary/10 blur-[100px] rounded-full"></div>
         <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-secondary/10 blur-[100px] rounded-full"></div>
         <div className="md:col-span-3 flex flex-col items-center gap-base">
           <div className="relative">
-            <div className="w-32 h-32 md:w-40 md:h-40 rounded-full border-2 border-primary p-1 glow-cyan">
+            <div className="w-28 h-28 xs:w-32 xs:h-32 md:w-40 md:h-40 rounded-full border-2 border-primary p-1 glow-cyan">
               <Image
                 alt="User profile"
                 className="w-full h-full rounded-full object-cover"
@@ -57,7 +57,7 @@ const Profile = () => {
           </div>
         </div>
         <div className="md:col-span-6 space-y-base text-center md:text-left">
-          <h1 className="font-headline-xl text-headline-xl text-primary">
+          <h1 className="font-headline-xl text-2xl xs:text-3xl md:text-headline-xl text-primary break-all">
             {`@${userInfo?.login || "dev_neuro"}`}
           </h1>
           <p className="font-body-md text-body-md text-on-surface-variant">

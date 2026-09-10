@@ -10,7 +10,7 @@ const Footer = () => {
             Protocol v4.0.1 // Node: Alpha-7
           </span>
         </div>
-        <div className="flex gap-md">
+        <div className="flex flex-wrap justify-center gap-sm xs:gap-md">
           <a
             className="font-label-caps text-[10px] text-on-surface-variant hover:text-primary transition-colors"
             href="#"

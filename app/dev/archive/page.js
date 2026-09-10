@@ -31,7 +31,7 @@ export default async function ArchivePage() {
   return (
     <div className="flex flex-col min-h-screen dashboard-shell">
       <main className="grow pt-xl pb-block-gap">
-        <div className="max-w-container-max-width mx-auto px-margin-edge">
+        <div className="max-w-container-max-width mx-auto px-4 xs:px-margin-mobile sm:px-md md:px-margin-desktop xl:px-margin-edge">
           <Link
             href="/dev"
             className="inline-flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors text-sm mb-6"
@@ -39,9 +39,9 @@ export default async function ArchivePage() {
             <MdArrowBack /> Back to Dashboard
           </Link>
 
-          <header className="mb-block-gap border-l-4 border-primary pl-8 py-4 flex items-center justify-between flex-wrap gap-4">
+          <header className="mb-block-gap border-l-4 border-primary pl-4 md:pl-8 py-3 md:py-4 flex items-center justify-between flex-wrap gap-4">
             <div>
-              <h1 className="font-display-lg text-display-lg text-on-surface uppercase tracking-tight">
+              <h1 className="font-display-lg text-2xl xs:text-3xl md:text-display-lg text-on-surface uppercase tracking-tight">
                 My Story Archive
               </h1>
               <p className="text-on-surface-variant mt-2">

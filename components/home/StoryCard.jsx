@@ -9,7 +9,7 @@ const StoryCard = ({ story }) => {
     <>
       <Link href={`/story/${story?._id}`} className="group block h-full">
         <article className="bg-surface-container-low border flex flex-col h-full border-white/20 relative hover:border-primary/50 transition-colors">
-          <div className="relative h-60 overflow-hidden shrink-0">
+          <div className="relative h-40 xs:h-48 md:h-60 overflow-hidden shrink-0">
             <div
               className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
               data-alt={story?.repoName}
@@ -25,7 +25,7 @@ const StoryCard = ({ story }) => {
             </div>
           </div>
 
-          <div className="p-6 flex flex-col grow">
+          <div className="p-4 md:p-6 flex flex-col grow">
             <h2 className="font-headline-md text-[20px] text-on-surface group-hover:text-primary transition-colors line-clamp-2 mb-6 capitalize">
               {story?.repoName?.replace(/-/g, " ")}
             </h2>

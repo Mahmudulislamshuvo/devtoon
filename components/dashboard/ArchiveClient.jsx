@@ -45,7 +45,7 @@ const ArchiveClient = ({ initialStories, userId }) => {
 
   return (
     <>
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 xs:gap-6 md:gap-8">
         {stories.map((story) => (
           <article
             key={story._id}
@@ -70,7 +70,7 @@ const ArchiveClient = ({ initialStories, userId }) => {
               <MdDelete className="text-xl" />
             </button>
 
-            <div className="relative h-60 overflow-hidden shrink-0">
+            <div className="relative h-40 xs:h-48 md:h-60 overflow-hidden shrink-0">
               <div
                 className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
                 style={{ backgroundImage: `url(${story.coverPhoto})` }}
@@ -83,7 +83,7 @@ const ArchiveClient = ({ initialStories, userId }) => {
               </div>
             </div>
 
-            <div className="p-6 flex flex-col grow">
+            <div className="p-4 md:p-6 flex flex-col grow">
               <h2 className="font-headline-md text-[20px] text-on-surface group-hover:text-primary transition-colors line-clamp-2 mb-6 capitalize">
                 {story.repoName?.replace(/-/g, " ")}
               </h2>

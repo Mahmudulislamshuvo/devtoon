@@ -10,12 +10,12 @@ const RegistrationPage = () => {
         <div className="fixed bottom-[-20%] left-[-10%] w-200 h-200 bg-secondary/5 rounded-full blur-[150px] pointer-events-none -z-10"></div>
 
         {/* <!-- Identity Progress Stepper --> */}
-        <div className="w-full max-w-300 mb-6 glass-surface p-5 rounded-lg border border-primary/20 flex items-center gap-md overflow-hidden relative transition-transform duration-200 ease-out">
+        <div className="w-full max-w-300 mb-6 glass-surface p-3 xs:p-5 rounded-lg border border-primary/20 flex items-center gap-sm xs:gap-md overflow-hidden relative transition-transform duration-200 ease-out">
           <div className="flex flex-col shrink-0">
-            <span className="font-label-caps text-[10px] text-primary/70">
+            <span className="font-label-caps text-[9px] xs:text-[10px] text-primary/70">
               DEPLOYMENT_STAGE
             </span>
-            <span className="font-code-sm text-xs text-primary font-bold">
+            <span className="font-code-sm text-[11px] xs:text-xs text-primary font-bold">
               RECRUIT_SYNC: 62%
             </span>
           </div>
@@ -28,7 +28,7 @@ const RegistrationPage = () => {
               <div className="absolute right-0 top-0 bottom-0 w-8 bg-white/20 blur-sm"></div>
             </div>
           </div>
-          <div className="flex gap-4 items-center px-md border-l border-outline-variant/30">
+          <div className="hidden xs:flex gap-3 sm:gap-4 items-center px-2 sm:px-md border-l border-outline-variant/30">
             <div className="flex flex-col items-center opacity-100">
               <div className="w-2 h-2 rounded-full bg-primary mb-1"></div>
               <span className="font-label-caps text-[8px] text-primary">

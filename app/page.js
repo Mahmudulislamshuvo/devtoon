@@ -7,7 +7,7 @@ export default async function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       <main className="grow pt-24 pb-block-gap">
-        <div className="max-w-container-max-width mx-auto px-margin-edge">
+        <div className="max-w-container-max-width mx-auto px-4 xs:px-margin-mobile sm:px-md md:px-margin-desktop xl:px-margin-edge">
           <StoryCta />
 
           {/* */}

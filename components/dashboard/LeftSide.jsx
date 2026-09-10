@@ -1,12 +1,12 @@
 "use client";
 
 import { useInfiniteQuery} from"@tanstack/react-query";
-import { MdAutoAwesome, MdStar, MdSync} from"react-icons/md";
+import { MdAutoAwesome, MdStar, MdSync, MdHistory} from"react-icons/md";
 import ReposCardSkeliton from"../slelitons/ReposCardSkeliton";
 import Link from"next/link";
 import React from"react";
 
-const LeftSide = () => {
+const LeftSide = ({ onOpenStoriesDrawer }) => {
  const {
  data,
  isLoading,
@@ -43,11 +43,25 @@ const LeftSide = () => {
  <h2 className="font-headline-lg text-headline-lg text-on-surface">
  Your Repositories
  </h2>
+ {/* Right side actions row */}
+ <div className="flex items-center gap-xs">
+ {/* Stories Drawer trigger — শুধু mobile/tablet-এ দেখাবে */}
+ {onOpenStoriesDrawer && (
+ <button
+ onClick={onOpenStoriesDrawer}
+ className="lg:hidden flex items-center gap-1.5 px-xs py-1 bg-white/5 border border-white/10 hover:border-primary/40 hover:bg-primary/10 text-on-surface-variant hover:text-primary font-label-caps text-label-caps rounded-lg transition-all duration-200"
+ >
+ <MdHistory className="text-base shrink-0" />
+ <span className="hidden xs:inline">Stories</span>
+ </button>
+ )}
  <div className="flex items-center gap-xs text-primary font-code-sm cursor-pointer hover:opacity-80">
  <MdSync className="text-[18px]"/>
- <span className="font-label-caps text-label-caps">Refresh Index</span>
+ <span className="font-label-caps text-label-caps hidden xs:inline">Refresh Index</span>
  </div>
  </div>
+ </div>
+
 
  <div className="grid grid-cols-1 md:grid-cols-2 gap-sm">
  {isLoading ? (
@@ -69,7 +83,7 @@ const LeftSide = () => {
  >
  <div className="flex justify-between items-start mb-md">
  <div>
- <h3 className="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-1 truncate w-40 md:w-48">
+ <h3 className="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-1 truncate max-w-[120px] xs:max-w-[150px] sm:max-w-[200px] md:max-w-none">
  {repo.repoName}
  </h3>
  <p className="text-on-surface-variant font-code-sm text-code-sm line-clamp-1">

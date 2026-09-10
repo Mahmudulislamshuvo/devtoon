@@ -92,18 +92,11 @@ const LoginPage = () => {
  RIGHT SIDE : LOGIN FORM SECTION
  ========================================== */}
  {/* নির্দিষ্ট w-[480px] দেওয়া হয়েছে যাতে এটি ডানদিকে পারফেক্টভাবে বসে থাকে */}
- <section className="w-full lg:w-120 xl:w-125 shrink-0 flex flex-col justify-center p-8 md:p-12 bg-[#0b1121]/90 backdrop-blur-xl lg:border-l border-slate-800/50 relative z-10 overflow-y-auto">
- <div className="w-full max-w-95 mx-auto flex flex-col justify-center min-h-full py-10">
+ <section className="w-full lg:w-120 xl:w-125 shrink-0 flex flex-col justify-center p-5 xs:p-8 md:p-12 bg-[#0b1121]/90 backdrop-blur-xl lg:border-l border-slate-800/50 relative z-10 overflow-y-auto">
+ <div className="w-full max-w-95 mx-auto flex flex-col justify-center min-h-full py-6 xs:py-10">
  {/* */}
- <div className="space-y-4 mb-10 shrink-0">
- {/* <div className="inline-flex items-center gap-2 px-3 py-1 border border-cyan-500/30 rounded text-cyan-400 text-[10px] font-bold tracking-widest uppercase">
- <span className="relative flex h-2 w-2 shrink-0">
- <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
- <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
- </span>
- AUTHENTICATION_GATEWAY
- </div> */}
- <h1 className="text-5xl font-extrabold text-white leading-tight tracking-tight">
+ <div className="space-y-4 mb-6 xs:mb-10 shrink-0">
+ <h1 className="text-3xl xs:text-4xl md:text-5xl font-extrabold text-white leading-tight tracking-tight">
  Welcome back,
  <br />
  <span className="text-cyan-400">Architect.</span>

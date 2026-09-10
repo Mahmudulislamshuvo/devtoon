@@ -41,7 +41,7 @@ const GithubConnectBanner = ({ userName }) => {
       <div className="absolute -top-24 -left-24 w-64 h-64 rounded-full bg-primary/5 blur-3xl pointer-events-none" />
       <div className="absolute -bottom-24 -right-24 w-64 h-64 rounded-full bg-secondary/5 blur-3xl pointer-events-none" />
 
-      <div className="relative z-10 flex flex-col items-center text-center px-8 md:px-16 py-xl gap-lg">
+      <div className="relative z-10 flex flex-col items-center text-center px-4 xs:px-6 md:px-8 lg:px-16 py-lg md:py-xl gap-md md:gap-lg">
         {/* Lock badge */}
         <div className="flex items-center gap-xs px-sm py-xs rounded-full border border-primary/20 bg-primary/5 text-primary font-label-caps text-label-caps">
           <MdLock className="text-sm" />

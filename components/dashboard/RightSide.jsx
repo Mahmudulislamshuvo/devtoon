@@ -24,7 +24,7 @@ const timeAgo = (dateInput) => {
   return "just now";
 };
 
-const RightSide = ({ recentStories = [] }) => {
+const RightSide = ({ recentStories = [], showHeader = true }) => {
   useEffect(() => {
     const cards = document.querySelectorAll(".dashboard-sidebar .glass-card");
     const handleMouseMove = (event) => {
@@ -60,13 +60,15 @@ const RightSide = ({ recentStories = [] }) => {
   }, []);
 
   return (
-    <aside className="dashboard-sidebar lg:col-span-4 space-y-md">
-      <div className="flex items-center justify-between mb-sm">
-        <h2 className="font-headline-lg text-headline-lg text-on-surface">
-          Recent Stories
-        </h2>
-        <MdHistory className="text-on-surface-variant" />
-      </div>
+    <aside className="dashboard-sidebar w-full space-y-md">
+      {showHeader && (
+        <div className="flex items-center justify-between mb-sm">
+          <h2 className="font-headline-lg text-headline-lg text-on-surface">
+            Recent Stories
+          </h2>
+          <MdHistory className="text-on-surface-variant" />
+        </div>
+      )}
       <div className="glass-card rounded-xl overflow-hidden">
         <div className="p-md space-y-md">
           {recentStories.length === 0 ? (

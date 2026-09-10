@@ -6,6 +6,7 @@ import User from "@/models/userSchema";
 import { getServerSession } from "next-auth";
 import GithubConnectBanner from "@/components/dashboard/GithubConnectBanner";
 import { getUserRecentStories } from "@/actions";
+import DashboardClient from "@/components/dashboard/DashboardClient";
 
 const DashboardPage = async () => {
   const authenticatedUser = await getServerSession(authOptions);
@@ -15,7 +16,7 @@ const DashboardPage = async () => {
     : null;
 
   const hasGithub = !!userName?.githubUsername;
-  
+
   let recentStories = [];
   if (hasGithub && userName) {
     recentStories = await getUserRecentStories(userName._id, 3);
@@ -23,10 +24,10 @@ const DashboardPage = async () => {
 
   return (
     <div className="dashboard-shell">
-      <main className="pt-xl pb-xl px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto min-h-screen">
+      <main className="pt-xl pb-xl px-4 xs:px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto min-h-screen">
         {/* Welcome Header */}
         <div className="mb-lg mt-md">
-          <h1 className="font-headline-xl text-headline-xl text-on-surface mb-base">
+          <h1 className="font-headline-xl text-2xl xs:text-3xl md:text-4xl lg:text-headline-xl text-on-surface mb-base">
             Welcome back,{" "}
             <span className="text-primary">
               {hasGithub ? `@${userName?.githubUsername}` : userName?.name}
@@ -44,12 +45,7 @@ const DashboardPage = async () => {
 
         {/* Dashboard Grid — shown only when GitHub is connected */}
         {hasGithub && (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
-            {/* Left Side: Repositories (Main Content) */}
-            <LeftSide />
-            {/* Right Side: Recent Stories (Sidebar) */}
-            <RightSide recentStories={recentStories} />
-          </div>
+          <DashboardClient recentStories={recentStories} />
         )}
       </main>
     </div>
@@ -57,3 +53,4 @@ const DashboardPage = async () => {
 };
 
 export default DashboardPage;
+
