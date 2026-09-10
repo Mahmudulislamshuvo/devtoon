@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./public/ss1.png" alt="Devtoon Logo" width="120" />
+  <img src="./public/ss1.png" alt="Devtoon Logo" width="100%" />
 
 # 📚 Devtoon
 
